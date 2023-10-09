@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Game/Item")]
-public class Item : ScriptableObject
+public class Item : MonoBehaviour
 {
-    public string Name;
-    public string Description;
-    public Sprite Sprite;
-}
+    public ItemData ItemData;
 
+    private void Awake()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = ItemData.Sprite;
+    }
+}
