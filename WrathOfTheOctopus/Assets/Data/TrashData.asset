@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Trash
   Description: Can
-  Sprite: {fileID: 21300000, guid: a2cf44d537c1c6b4ba44e0a7ad548c7c, type: 3}
+  Prefab: {fileID: 7299299762178244224, guid: 88a6eb972ce15eb488f39de260accb8e, type: 3}
+  Recepie:
+    Ingredients: []
+    Result:
+      Item: {fileID: 0}
+      Ammount: 0

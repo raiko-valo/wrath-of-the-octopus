@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceNode : MonoBehaviour
 {
-    public Item Item;
+    public ItemData Item;
     public int ItemDropAmount;
     public int ToolLevelRequired;
 
@@ -13,7 +13,7 @@ public class ResourceNode : MonoBehaviour
     {
         for (int item = 0; item < ItemDropAmount; item++)
         {
-            Instantiate(Item, transform);
+            Item.Drop(transform.position);
         }
     }
 }
