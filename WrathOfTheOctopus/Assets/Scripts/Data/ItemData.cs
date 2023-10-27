@@ -3,20 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.U2D;
 
 [CreateAssetMenu(menuName = "Game/Item")]
 public class ItemData : ScriptableObject
 {
     public string Name;
     public string Description;
-    public GameObject Prefab;
+    public Sprite Sprite;
+    public GameObject itemPrefab;
 
     public CraftingRecipe Recipe;
 
     public void Drop(Vector3 location)
-    {
-        GameObject gameObject = Instantiate(Prefab, location, Quaternion.identity);
-        gameObject.GetComponent<Item>().ItemData = this;
+    {        
+        GameObject gm = Instantiate(itemPrefab, location, Quaternion.identity);
+        SpriteRenderer sr = gm.GetComponent<SpriteRenderer>();
+        sr.sprite = Sprite;
+        sr.size = new Vector2(1.0f, 1.0f);
+        gm.GetComponent<Item>().ItemData = this;
     }
 }
 
@@ -24,7 +29,7 @@ public class ItemData : ScriptableObject
 public class CraftingRecipe
 {
     public List<ItemPair> Ingredients;
-    public ItemPair Result;
+    public int Ammount;
 }
 
 [Serializable]

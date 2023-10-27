@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Sea Weed
   Description: weed
-  Prefab: {fileID: 7299299762178244224, guid: a1afbbb19aad57640b0b3332a3bd46ce, type: 3}
-  Recepie:
+  Sprite: {fileID: 21300000, guid: a36ce9e3fe2d7824a853bd1c4c8522c0, type: 3}
+  itemPrefab: {fileID: 7299299762178244224, guid: 484b754477f62e84aae0d39d641377b3, type: 3}
+  Recipe:
     Ingredients: []
     Result:
       Item: {fileID: 0}
