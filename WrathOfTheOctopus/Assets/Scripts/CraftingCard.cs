@@ -20,4 +20,5 @@ public class CraftingCard : MonoBehaviour
         }
         Item.Drop(Player.Instance.transform.position);
     }
+
 }
