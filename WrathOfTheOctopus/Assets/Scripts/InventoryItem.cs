@@ -9,10 +9,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [Header("UI")]
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
-    [HideInInspector] public Item item;
+    [HideInInspector] public ItemSten item;
     public string name;
     public Text text;
-    public void InitialiseItem(Item newItem)
+    public void InitialiseItem(ItemSten newItem)
     {
         item = newItem;
         image.sprite = newItem.image;
