@@ -145,4 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item: {fileID: 0}
   ItemDropAmount: 0
+  NodeHealth: 0
   ToolLevelRequired: 0
+  MiningRange: 2

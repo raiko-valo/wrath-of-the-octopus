@@ -6,6 +6,7 @@ public class Item : MonoBehaviour
 {
     public ItemData ItemData;
     private SpriteRenderer spriteRenderer;
+    private float PickUpRange = 2f;
 
     private void Awake()
     {
@@ -14,12 +15,14 @@ public class Item : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Destroy(gameObject);
+        if (Player.Instance.InRange(transform.position, PickUpRange))
+            Destroy(gameObject);
     }
 
     private void OnMouseEnter()
     {
-        spriteRenderer.color = Color.gray;
+        if (Player.Instance.InRange(transform.position, PickUpRange)) 
+            spriteRenderer.color = Color.gray;
     }
 
     private void OnMouseExit()

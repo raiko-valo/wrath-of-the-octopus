@@ -8,6 +8,7 @@ public class ResourceNode : MonoBehaviour
     public int ItemDropAmount;
     public int NodeHealth;
     public int ToolLevelRequired;
+    public float MiningRange;
 
     private SpriteRenderer spriteRenderer;
 
@@ -35,7 +36,8 @@ public class ResourceNode : MonoBehaviour
    
     private void OnMouseEnter()
     {
-        spriteRenderer.color = Color.gray;
+        if (Player.Instance.InRange(transform.position, MiningRange)) 
+            spriteRenderer.color = Color.gray;
     }
 
     private void OnMouseExit()
@@ -45,11 +47,14 @@ public class ResourceNode : MonoBehaviour
 
     private void OnMouseDown()
     {
-        NodeHealth -= 1;
-        if (NodeHealth <= 0 )
+        if (Player.Instance.InRange(transform.position, MiningRange))
         {
-            DropItems();
-            Destroy(gameObject);
-        }
+            NodeHealth -= 1;
+            if (NodeHealth <= 0)
+            {
+                DropItems();
+                Destroy(gameObject);
+            }
+        }       
     }
 }

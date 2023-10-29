@@ -148,3 +148,4 @@ MonoBehaviour:
   CraftingMenu: {fileID: 2825974675171826526, guid: 8a254d53f827967458f5cba938fb9048, type: 3}
   CraftablePrefab: {fileID: 801803706846066877, guid: f64848432ef709d4da9a6021f69d9a7d, type: 3}
   CraftingComponentPrefab: {fileID: 8078199565873531727, guid: b39cb8bed51719e4794207b9151a82a5, type: 3}
+  CraftingRange: 2
