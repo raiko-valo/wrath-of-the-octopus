@@ -9,12 +9,12 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [Header("UI")]
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
-    [HideInInspector] public ItemSten item;
+    [HideInInspector] public ItemData item;
     public Text text;
-    public void InitialiseItem(ItemSten newItem)
+    public void InitialiseItem(ItemData newItem)
     {
         item = newItem;
-        image.sprite = newItem.image;
+        image.sprite = newItem.Sprite;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -27,7 +27,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         transform.position = Input.mousePosition;
         transform.eulerAngles = new Vector3(0, 0, 0);
-        text.text = item.name;
+        text.text = item.Name;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -39,7 +39,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        text.text = item.name;
+        text.text = item.Name;
     }
 
     public void OnPointerExit(PointerEventData eventData)
