@@ -68,6 +68,11 @@ public class SharkMovement : MonoBehaviour
                 UpdatePlayerInRange();
             }
         }
+
+        if (Vector2.Distance(octopus.transform.position, transform.position) <= 0.1f)
+        {
+            Health.Instance.RemoveHealth();
+        }
     }
 
     void FlipHorizontally()
