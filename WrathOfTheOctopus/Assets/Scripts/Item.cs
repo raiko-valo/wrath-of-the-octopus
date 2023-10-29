@@ -16,7 +16,10 @@ public class Item : MonoBehaviour
     private void OnMouseDown()
     {
         if (Player.Instance.InRange(transform.position, PickUpRange))
+        {
+            InventoryController.Instance.AddItem(ItemData);
             Destroy(gameObject);
+        }
     }
 
     private void OnMouseEnter()
