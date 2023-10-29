@@ -2,10 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class InventoryController : MonoBehaviour
 {
@@ -13,7 +11,7 @@ public class InventoryController : MonoBehaviour
     public Health health;
     private List<GameObject> inventorySlots = new List<GameObject>();
     public List<ItemData> items = new List<ItemData>();
-    private int space;
+    private int space = 8;
     public InventoryItem InventoryItemPrefab;
     public Text text;
 
