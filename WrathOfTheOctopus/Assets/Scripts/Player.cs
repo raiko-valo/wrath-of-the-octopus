@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public static Player Instance;
+    public Health health;
     private void Awake()
     {
         Instance = this;
@@ -16,11 +18,20 @@ public class Player : MonoBehaviour
         return Vector3.Distance(transform.position, pos) <= range;
     }
 
-    public void DestroyPlayer()
+    public void RespawnPlayer()
     {
-        if (this.gameObject != null)
+        gameObject.transform.position = new Vector3(0, 0, 0);
+        for (int i = 0; i < 4; i++)
         {
-            Destroy(this.gameObject);
+            StartCoroutine(Flash(3));
         }
+    }
+
+    IEnumerator Flash(int n)
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 100);
+        yield return new WaitForSeconds(n);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 100);
+        yield return new WaitForSeconds(n);
     }
 }

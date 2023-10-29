@@ -23,8 +23,17 @@ public class Health : MonoBehaviour
     public void RemoveHealth()
     {
         health--;
+        InventoryController.Instance.RemoveSlot();
         count.text = health.ToString();
-        if (health <= 0) Player.Instance.DestroyPlayer();
+        if (health == 0)
+        {
+            Player.Instance.RespawnPlayer();
+            for (int i = 0; i < 8; i++) 
+            { 
+                AddHealth();
+                InventoryController.Instance.AddSlot();
+            }
+        }
     }
 
     public void AddHealth()

@@ -13,7 +13,7 @@ public class InventoryController : MonoBehaviour
     public Health health;
     private List<GameObject> inventorySlots = new List<GameObject>();
     public List<ItemData> items = new List<ItemData>();
-    private int space = 8;
+    private int space;
     public InventoryItem InventoryItemPrefab;
     public Text text;
 
@@ -38,13 +38,14 @@ public class InventoryController : MonoBehaviour
 
     public void RemoveSlot()
     {
+        Destroy(inventorySlots[0]);
         inventorySlots.RemoveAt(0);
         space--;
     }
 
     public void AddSlot()
     {
-        inventorySlots.Add(Instantiate(InventorySlotPrefab));
+        inventorySlots.Add(Instantiate(InventorySlotPrefab, transform));
         space++;
     }
 
@@ -90,6 +91,7 @@ public class InventoryController : MonoBehaviour
         int index = 0;
         foreach (ItemData item in items)
         {
+            if (index <= health.health) break;
             if (inventorySlots[index].transform.childCount != 0) Destroy(inventorySlots[index].transform.GetChild(0));
             InventoryItem newItem = Instantiate(InventoryItemPrefab, inventorySlots[index].transform);
             newItem.InitialiseItem(item);

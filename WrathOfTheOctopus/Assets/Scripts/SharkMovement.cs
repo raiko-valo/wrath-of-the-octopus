@@ -15,6 +15,7 @@ public class SharkMovement : MonoBehaviour
     private GameObject octopus;
     private Rigidbody2D rb;
     private bool isPlayerInRange = false;
+    private bool cooldown = false;
 
     void Start()
     {
@@ -71,7 +72,12 @@ public class SharkMovement : MonoBehaviour
 
         if (Vector2.Distance(octopus.transform.position, transform.position) <= 0.1f)
         {
-            Health.Instance.RemoveHealth();
+            if (!cooldown)
+            {
+                Health.Instance.RemoveHealth();
+                cooldown = true;
+                //StartCoroutine(Wait(3));
+            }
         }
     }
 
@@ -117,5 +123,11 @@ public class SharkMovement : MonoBehaviour
     void OnBecameInvisible()
     {
         Destroy(gameObject);
+    }
+
+    IEnumerator Wait(int n)
+    {
+        cooldown = false;
+        yield return new WaitForSeconds(n);
     }
 }

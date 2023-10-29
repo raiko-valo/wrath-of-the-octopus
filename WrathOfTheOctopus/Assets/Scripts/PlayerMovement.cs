@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        if (!isMoving) transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
     void StartMoving()
