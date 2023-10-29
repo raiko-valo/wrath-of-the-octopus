@@ -17,11 +17,6 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
         }
     }
 
-    public void OnMouseEnter()
-    {
-
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         gameObject.GetComponent<Image>().color = new Color32(230, 230, 230, 180);

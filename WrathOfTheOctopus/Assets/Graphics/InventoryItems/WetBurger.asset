@@ -15,4 +15,5 @@ MonoBehaviour:
   type: 0
   actionType: 0
   stackable: 0
+  name: wet burger
   image: {fileID: -2129381855, guid: fd0d32e08db574845b39ff937c9118bb, type: 3}

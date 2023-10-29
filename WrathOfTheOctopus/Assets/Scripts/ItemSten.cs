@@ -12,6 +12,7 @@ public class ItemSten : ScriptableObject
     public ActionType actionType;
     [Header("Only UI")]
     public bool stackable = false;
+    public string name;
     [Header("Both")]
     public Sprite image;
 

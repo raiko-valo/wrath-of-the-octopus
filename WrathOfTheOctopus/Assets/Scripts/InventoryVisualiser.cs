@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class InventoryVisualiser : MonoBehaviour
 {
-    public bool active = true;
+    private bool active = true;
+    public GameObject inventory;
 
     // Update is called once per frame
     void Update()
@@ -17,7 +18,7 @@ public class InventoryVisualiser : MonoBehaviour
             else active = false;
         }
 
-        if (active) gameObject.SetActive(true);
-        else gameObject.SetActive(false);
+        if (active) inventory.SetActive(true);
+        else inventory.SetActive(false);
     }
 }
