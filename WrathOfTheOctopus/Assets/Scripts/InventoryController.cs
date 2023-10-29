@@ -91,7 +91,7 @@ public class InventoryController : MonoBehaviour
         int index = 0;
         foreach (ItemData item in items)
         {
-            if (index <= health.health) break;
+            if (index >= health.health) break;
             if (inventorySlots[index].transform.childCount != 0) Destroy(inventorySlots[index].transform.GetChild(0));
             InventoryItem newItem = Instantiate(InventoryItemPrefab, inventorySlots[index].transform);
             newItem.InitialiseItem(item);
