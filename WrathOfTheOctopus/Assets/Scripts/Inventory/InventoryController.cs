@@ -1,19 +1,16 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
 {
     public GameObject InventorySlotPrefab;
-    private List<GameObject> inventorySlots = new List<GameObject>();
-    public List<ItemData> items = new List<ItemData>();
-    private int space = 8;
     public InventoryItem InventoryItemPrefab;
     public Text text;
+    public List<ItemData> items = new();
 
+    private readonly Stack<GameObject> inventorySlots = new();
+    
     public static InventoryController Instance;
 
     private void Awake()
@@ -35,7 +32,8 @@ public class InventoryController : MonoBehaviour
         for (int i = 0; i < Health.Instance.MaxHealth; i++)
         {
             GameObject inventorySlot = Instantiate(InventorySlotPrefab, transform);
-            inventorySlots.Add(inventorySlot);
+            inventorySlot.GetComponent<InventorySlot>().Index = i;
+            inventorySlots.Push(inventorySlot);
         }
 
         if (items.Count > 0) InitialiseItems();
@@ -43,39 +41,45 @@ public class InventoryController : MonoBehaviour
 
     void OnRemoveHealth(int amount)
     {
+        ItemData[] inventoryItems = new ItemData[amount];
         for (int i = 0; i < amount; i++)
         {
-            Destroy(inventorySlots[0]);
-            inventorySlots.RemoveAt(0);
-            space--;
+            GameObject slot = inventorySlots.Peek();
+            if (slot.transform.childCount != 0)
+            {
+                GameObject child = slot.transform.GetChild(0).gameObject;
+                inventoryItems[i] = child.GetComponent<InventoryItem>().item;
+                RemoveItem(inventoryItems[i]);
+            }
+            Destroy(inventorySlots.Pop());
+        }
+        for (int i = 0; i < amount; i++)
+        {
+            if (inventoryItems[i] == null) break;
+            AddItem(inventoryItems[i]);
         }
     }
 
     void OnAddHealth(int amount)
     {
-        for (int i = 0; i < amount; i++) AddSlot();
-    }
-
-    public void AddSlot()
-    {
-        inventorySlots.Add(Instantiate(InventorySlotPrefab, transform));
-        space++;
+        for (int i = 0; i < amount; i++)
+            inventorySlots.Push(Instantiate(InventorySlotPrefab, transform));
     }
 
     public void AddItem(ItemData newItem)
     {
-        if (space != 0)
+        foreach (GameObject slot in inventorySlots)
         {
-            foreach (GameObject slot in inventorySlots)
+            if (slot.transform.childCount == 0)
             {
-                if (slot.transform.childCount == 0)
-                {
-                    items.Add(newItem);
-                    InitialiseNewItem(newItem);
-                    break;
-                }
+                items.Add(newItem);
+                InventoryItem inventoryItem = Instantiate(InventoryItemPrefab, slot.transform);
+                inventoryItem.InitialiseItem(newItem);
+                inventoryItem.text = text;
+                return;
             }
         }
+        newItem.Drop(Player.Instance.transform.position);
     }
 
     public void RemoveItem(ItemData item)
@@ -90,11 +94,14 @@ public class InventoryController : MonoBehaviour
         }
         foreach (GameObject slot in inventorySlots)
         {
-            GameObject child = slot.transform.GetChild(0).gameObject;
-            if (child != null && child.GetComponent<InventoryItem>().item.Name == item.Name)
+            if (slot.transform.childCount != 0)
             {
-                Destroy(child);
-                break;
+                GameObject child = slot.transform.GetChild(0).gameObject;
+                if (child != null && child.GetComponent<InventoryItem>().item.Name == item.Name)
+                {
+                    Destroy(child);
+                    break;
+                }
             }
         }
     }
@@ -102,28 +109,14 @@ public class InventoryController : MonoBehaviour
     public void InitialiseItems()
     {
         int index = 0;
-        foreach (ItemData item in items)
+        foreach (GameObject slot in inventorySlots)
         {
-            if (index >= Health.Instance.CurrentHealth) break;
-            if (inventorySlots[index].transform.childCount != 0) Destroy(inventorySlots[index].transform.GetChild(0));
-            InventoryItem newItem = Instantiate(InventoryItemPrefab, inventorySlots[index].transform);
-            newItem.InitialiseItem(item);
+            if (index >= items.Count) break;
+            if (slot.transform.childCount != 0) Destroy(slot.transform.GetChild(0));
+            InventoryItem newItem = Instantiate(InventoryItemPrefab, slot.transform);
+            newItem.InitialiseItem(items[index]);
             newItem.text = text;
             index++;
-        }
-    }
-
-    public void InitialiseNewItem(ItemData item)
-    {
-        for (int index = 0; index < space; index++)
-        {
-            if (inventorySlots[index].transform.childCount == 0)
-            {
-                InventoryItem newItem = Instantiate(InventoryItemPrefab, inventorySlots[index].transform);
-                newItem.InitialiseItem(item);
-                newItem.text = text;
-                break;
-            }
         }
     }
 }

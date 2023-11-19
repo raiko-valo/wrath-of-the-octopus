@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    public int Index;
+
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)

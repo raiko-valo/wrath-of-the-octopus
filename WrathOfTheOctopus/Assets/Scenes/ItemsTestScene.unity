@@ -341,7 +341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1519a45d6e6bb0a48ae7bff7007de77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 8
+  MaxHealth: 8
+  CurrentHealth: 8
   count: {fileID: 307195401}
 --- !u!114 &429113850
 MonoBehaviour:
@@ -491,7 +492,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventorySlotPrefab: {fileID: 4610198181791790601, guid: 361f5c5ebade06b49bc00fbd94f58ffc, type: 3}
-  health: {fileID: 429113849}
   items:
   - {fileID: 11400000, guid: 23d0b3cbe31bbd148aba3dbdc9481756, type: 2}
   - {fileID: 11400000, guid: 23d0b3cbe31bbd148aba3dbdc9481756, type: 2}

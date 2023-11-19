@@ -52,12 +52,12 @@ public class Health : MonoBehaviour
     [ContextMenu("RemoveHealth")]
     public void TestRemove()
     {
-        Events.RemoveHealth(2);
+        Events.RemoveHealth(1);
     }
 
     [ContextMenu("AddHealth")]
     public void TestAdd()
     {
-        Events.AddHealth(2);
+        Events.AddHealth(1);
     }
 }

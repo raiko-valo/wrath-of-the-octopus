@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
         return Vector3.Distance(transform.position, pos) <= range;
     }
 
-    public void RespawnPlayer()
+    void RespawnPlayer()
     {
         gameObject.transform.position = new Vector3(0, 0, 0);
         for (int i = 0; i < 4; i++)
