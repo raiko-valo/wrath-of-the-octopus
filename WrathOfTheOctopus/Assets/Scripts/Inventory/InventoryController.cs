@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class InventoryController : MonoBehaviour
 {
     public GameObject InventorySlotPrefab;
-    public Health health;
     private List<GameObject> inventorySlots = new List<GameObject>();
     public List<ItemData> items = new List<ItemData>();
     private int space = 8;
@@ -19,13 +18,21 @@ public class InventoryController : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;   
+        Instance = this;
+        Events.OnAddHealth += OnAddHealth;
+        Events.OnRemoveHealth += OnRemoveHealth;
+    }
+
+    private void OnDestroy()
+    {
+        Events.OnAddHealth -= OnAddHealth;
+        Events.OnRemoveHealth -= OnRemoveHealth;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < health.health; i++)
+        for (int i = 0; i < Health.Instance.MaxHealth; i++)
         {
             GameObject inventorySlot = Instantiate(InventorySlotPrefab, transform);
             inventorySlots.Add(inventorySlot);
@@ -34,11 +41,19 @@ public class InventoryController : MonoBehaviour
         if (items.Count > 0) InitialiseItems();
     }
 
-    public void RemoveSlot()
+    void OnRemoveHealth(int amount)
     {
-        Destroy(inventorySlots[0]);
-        inventorySlots.RemoveAt(0);
-        space--;
+        for (int i = 0; i < amount; i++)
+        {
+            Destroy(inventorySlots[0]);
+            inventorySlots.RemoveAt(0);
+            space--;
+        }
+    }
+
+    void OnAddHealth(int amount)
+    {
+        for (int i = 0; i < amount; i++) AddSlot();
     }
 
     public void AddSlot()
@@ -89,7 +104,7 @@ public class InventoryController : MonoBehaviour
         int index = 0;
         foreach (ItemData item in items)
         {
-            if (index >= health.health) break;
+            if (index >= Health.Instance.CurrentHealth) break;
             if (inventorySlots[index].transform.childCount != 0) Destroy(inventorySlots[index].transform.GetChild(0));
             InventoryItem newItem = Instantiate(InventoryItemPrefab, inventorySlots[index].transform);
             newItem.InitialiseItem(item);

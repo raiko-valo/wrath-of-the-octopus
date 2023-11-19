@@ -11,6 +11,12 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Events.OnDeath += RespawnPlayer;
+    }
+
+    private void OnDestroy()
+    {
+        Events.OnDeath -= RespawnPlayer;
     }
 
     public bool InRange(Vector3 pos, float range)

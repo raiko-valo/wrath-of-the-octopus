@@ -74,7 +74,7 @@ public class SharkMovement : MonoBehaviour
         {
             if (!cooldown)
             {
-                Health.Instance.RemoveHealth();
+                Events.RemoveHealth(1);
                 cooldown = true;
                 //StartCoroutine(Wait(3));
             }
