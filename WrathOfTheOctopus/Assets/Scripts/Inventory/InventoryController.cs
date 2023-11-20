@@ -9,8 +9,12 @@ public class InventoryController : MonoBehaviour
     public Text text;
     public List<ItemData> items = new();
 
-    private readonly Stack<GameObject> inventorySlots = new();
-    
+    [HideInInspector]
+    public ItemData SelectedItem;
+
+    private readonly List<GameObject> inventorySlots = new();
+    private int selectedIndex;
+
     public static InventoryController Instance;
 
     private void Awake()
@@ -29,14 +33,27 @@ public class InventoryController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < Health.Instance.MaxHealth; i++)
-        {
-            GameObject inventorySlot = Instantiate(InventorySlotPrefab, transform);
-            inventorySlot.GetComponent<InventorySlot>().Index = i;
-            inventorySlots.Push(inventorySlot);
-        }
-
+        OnAddHealth(Health.Instance.MaxHealth);
+        Events.ChangeSelected(0);
         if (items.Count > 0) InitialiseItems();
+    }
+
+    private void Update()
+    {
+        if (Input.mouseScrollDelta.y != 0.0)
+        {
+            selectedIndex += (int)Input.mouseScrollDelta.y;
+            if (selectedIndex >= inventorySlots.Count)
+            {
+                selectedIndex -= inventorySlots.Count;
+            }
+            else if (selectedIndex < 0)
+            {
+                selectedIndex += inventorySlots.Count;
+            }
+            SelectedItem = inventorySlots[selectedIndex].GetComponentInChildren<InventoryItem>()?.item;
+            Events.ChangeSelected(selectedIndex);
+        }
     }
 
     void OnRemoveHealth(int amount)
@@ -44,14 +61,15 @@ public class InventoryController : MonoBehaviour
         ItemData[] inventoryItems = new ItemData[amount];
         for (int i = 0; i < amount; i++)
         {
-            GameObject slot = inventorySlots.Peek();
+            GameObject slot = inventorySlots[^1];
             if (slot.transform.childCount != 0)
             {
                 GameObject child = slot.transform.GetChild(0).gameObject;
                 inventoryItems[i] = child.GetComponent<InventoryItem>().item;
                 RemoveItem(inventoryItems[i]);
             }
-            Destroy(inventorySlots.Pop());
+            Destroy(slot);
+            inventorySlots.RemoveAt(inventorySlots.Count-1);
         }
         for (int i = 0; i < amount; i++)
         {
@@ -63,7 +81,11 @@ public class InventoryController : MonoBehaviour
     void OnAddHealth(int amount)
     {
         for (int i = 0; i < amount; i++)
-            inventorySlots.Push(Instantiate(InventorySlotPrefab, transform));
+        {
+            GameObject inventorySlot = Instantiate(InventorySlotPrefab, transform);
+            inventorySlot.GetComponent<InventorySlot>().Index = i;
+            inventorySlots.Add(inventorySlot);
+        }
     }
 
     public void AddItem(ItemData newItem)

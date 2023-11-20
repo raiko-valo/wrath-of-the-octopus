@@ -12,4 +12,8 @@ public static class Events
 
     public static event Action OnDeath;
     public static void Died() => OnDeath?.Invoke();
+
+
+    public static event Action<int> OnChangeSelected;
+    public static void ChangeSelected(int value) => OnChangeSelected?.Invoke(value);
 }

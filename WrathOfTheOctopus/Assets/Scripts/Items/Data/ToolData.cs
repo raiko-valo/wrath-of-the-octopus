@@ -6,4 +6,5 @@ using UnityEngine;
 public class ToolData : ItemData
 {
     public int Damage;
+    public int ToolLevel;
 }

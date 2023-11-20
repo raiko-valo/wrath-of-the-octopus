@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ResourceNode : MonoBehaviour
+public class ResourceNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public ItemData Item;
     public int ItemDropAmount;
@@ -15,6 +17,26 @@ public class ResourceNode : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();    
+    }
+
+    private void Update()
+    {
+        if (Player.Instance.InRange(transform.position, MiningRange))
+        {
+
+            if (IsMouseOverObject())
+            {
+                spriteRenderer.color = Color.gray;
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    Mine();
+                }
+            }
+        }
+        else
+        {
+            spriteRenderer.color = Color.white;
+        }
     }
 
     [ContextMenu("DropItems")]
@@ -33,28 +55,61 @@ public class ResourceNode : MonoBehaviour
         }
     }
 
-   
-    private void OnMouseEnter()
+    bool IsMouseOverObject()
     {
-        if (Player.Instance.InRange(transform.position, MiningRange)) 
-            spriteRenderer.color = Color.gray;
+        // Cast a ray from the mouse position into the scene
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero, 100.0f,LayerMask.GetMask("ResourceNode"));
+
+        // Check if the ray hits a collider
+        if (hit.collider != null)
+        {
+            // Check if the collider belongs to the desired GameObject
+            if (hit.collider.gameObject == gameObject)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    private void OnMouseExit()
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        spriteRenderer.color = Color.gray;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
     {
         spriteRenderer.color = Color.white;
     }
 
-    private void OnMouseDown()
+    void Mine() 
     {
-        if (Player.Instance.InRange(transform.position, MiningRange))
+        ToolData tool = InventoryController.Instance.SelectedItem as ToolData;
+        if (tool != null)
         {
-            NodeHealth -= 1;
-            if (NodeHealth <= 0)
+            if (tool.ToolLevel >= ToolLevelRequired)
             {
-                DropItems();
-                Destroy(gameObject);
+                NodeHealth -= tool.Damage;
+                if (NodeHealth <= 0)
+                {
+                    DropItems();
+                    Destroy(gameObject);
+                }
             }
-        }       
+        }
+        else
+        {
+            if (ToolLevelRequired == 0)
+            {
+                NodeHealth -= 1;
+                if (NodeHealth <= 0)
+                {
+                    DropItems();
+                    Destroy(gameObject);
+                }
+            }
+        } 
     }
 }
