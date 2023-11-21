@@ -18,7 +18,7 @@ public class CraftingCard : MonoBehaviour
         {
             InventoryController.Instance.RemoveItem(ingridient.Item);
         }
-        Item.Drop(Player.Instance.transform.position);
+        InventoryController.Instance.AddItem(Item);
     }
 
 }

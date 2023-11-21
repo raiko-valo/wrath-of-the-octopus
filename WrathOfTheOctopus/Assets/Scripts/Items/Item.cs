@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using Random = UnityEngine.Random;
+
 
 public class Item : MonoBehaviour
 {
@@ -63,7 +65,7 @@ public class Item : MonoBehaviour
             }
 
             // Item bobbing
-            float yOffset = Mathf.Sin(Time.time * BobbingSpeed) * BobbingHeight;
+            float yOffset = Mathf.Sin(Time.time * BobbingSpeed + originalY) * BobbingHeight;
             transform.position = new Vector3(transform.position.x, originalY + yOffset, transform.position.z);
         }
     }

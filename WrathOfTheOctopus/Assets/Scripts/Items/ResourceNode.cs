@@ -12,7 +12,8 @@ public class ResourceNode : MonoBehaviour
     public int NodeHealth;
     public int ToolLevelRequired;
     public float MiningRange;
-    public ParticleSystem Particles;
+    public ParticleSystem MineParticles;
+    public ParticleSystem DestroyParticles;
 
     private SpriteRenderer spriteRenderer;
 
@@ -39,12 +40,21 @@ public class ResourceNode : MonoBehaviour
     {
         for (int item = 0; item < ItemDropAmount; item++)
         {
+            /*
             float angle = item * (360f / ItemDropAmount); // Calculate the angle for each object.
 
             // Calculate the position based on the angle and radius.
             float x = transform.position.x + 0.5f * Mathf.Cos(angle * Mathf.Deg2Rad);
             float z = transform.position.z + 0.5f * Mathf.Sin(angle * Mathf.Deg2Rad);
             Vector3 spawnPosition = new Vector3(x, transform.position.y, z);
+            */
+            float randomAngle = Random.Range(0f, Mathf.PI * 2f);
+
+            // Calculate a random position within the circle using polar coordinates
+            float x = transform.position.x + Mathf.Cos(randomAngle) * 0.5f;
+            float y = transform.position.y + Mathf.Sin(randomAngle) * 0.5f;
+
+            Vector3 spawnPosition = new Vector3(x, y, transform.position.z);
 
             Item.Drop(spawnPosition);
         }
@@ -81,12 +91,14 @@ public class ResourceNode : MonoBehaviour
         }
         if (tool.ToolLevel >= ToolLevelRequired)
         {
-            ParticleSystem particle = Instantiate(Particles, worldPoint, Particles.transform.rotation);
+            ParticleSystem particle = Instantiate(MineParticles, worldPoint, MineParticles.transform.rotation);
             Destroy(particle.gameObject, particle.main.duration);
             NodeHealth -= tool.Damage;
             if (NodeHealth <= 0)
             {
                 DropItems();
+                ParticleSystem destroyParticle = Instantiate(DestroyParticles, transform.position, DestroyParticles.transform.rotation);
+                Destroy(destroyParticle.gameObject, destroyParticle.main.duration);
                 Destroy(gameObject);
             }
         }
