@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b068900a5099a041a7835d5889c716a, type: 3}
+  m_Name: Pickup
+  m_EditorClassIdentifier: 
+  VolumeMin: 0.5
+  VolumeMax: 0.5
+  Pitchmin: 0.5
+  Pitchmax: 1.5
+  Cooldown: 0.17
+  AudioClips:
+  - {fileID: 8300000, guid: a581fbcc8e4c4c249aca9c8d6e5bf0b7, type: 3}
+  - {fileID: 8300000, guid: babb730a3afa0454b86722ba182fc2e2, type: 3}
+  - {fileID: 8300000, guid: 4efb59bfeec44df479a0889b09effd5a, type: 3}

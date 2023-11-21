@@ -7,6 +7,8 @@ public class InventoryController : MonoBehaviour
     public GameObject InventorySlotPrefab;
     public InventoryItem InventoryItemPrefab;
     public Text text;
+    public AudioClipGroup audioClipPickup;
+
     public List<ItemData> items = new();
 
     [HideInInspector]
@@ -98,6 +100,7 @@ public class InventoryController : MonoBehaviour
                 InventoryItem inventoryItem = Instantiate(InventoryItemPrefab, slot.transform);
                 inventoryItem.InitialiseItem(newItem);
                 inventoryItem.text = text;
+                audioClipPickup.Play();
                 return;
             }
         }

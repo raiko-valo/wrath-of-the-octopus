@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b068900a5099a041a7835d5889c716a, type: 3}
+  m_Name: Mining
+  m_EditorClassIdentifier: 
+  VolumeMin: 0.7
+  VolumeMax: 0.7
+  Pitchmin: 1.3
+  Pitchmax: 1.6
+  Cooldown: 0.1
+  AudioClips:
+  - {fileID: 8300000, guid: 59ca80b6a5939404c94a019cdd392310, type: 3}
+  - {fileID: 8300000, guid: 898cdbd535ab5f145a2e3526a513d2c9, type: 3}
+  - {fileID: 8300000, guid: 4eb56d2b91495d24baf97de77540de8a, type: 3}

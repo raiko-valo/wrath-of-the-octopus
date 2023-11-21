@@ -14,6 +14,7 @@ public class ResourceNode : MonoBehaviour
     public float MiningRange;
     public ParticleSystem MineParticles;
     public ParticleSystem DestroyParticles;
+    public AudioClipGroup audioClipMine;
 
     private SpriteRenderer spriteRenderer;
 
@@ -93,6 +94,7 @@ public class ResourceNode : MonoBehaviour
         {
             ParticleSystem particle = Instantiate(MineParticles, worldPoint, MineParticles.transform.rotation);
             Destroy(particle.gameObject, particle.main.duration);
+            audioClipMine.Play();
             NodeHealth -= tool.Damage;
             if (NodeHealth <= 0)
             {
