@@ -148,3 +148,4 @@ MonoBehaviour:
   NodeHealth: 0
   ToolLevelRequired: 0
   MiningRange: 2
+  Particles: {fileID: 5596037813865006890, guid: 5567cb07f3b355a438da71bfa600e1d0, type: 3}

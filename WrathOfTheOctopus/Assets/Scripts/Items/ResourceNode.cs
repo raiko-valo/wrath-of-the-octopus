@@ -3,35 +3,30 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.ParticleSystem;
 
-public class ResourceNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ResourceNode : MonoBehaviour
 {
     public ItemData Item;
     public int ItemDropAmount;
     public int NodeHealth;
     public int ToolLevelRequired;
     public float MiningRange;
+    public ParticleSystem Particles;
 
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();    
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        if (Player.Instance.InRange(transform.position, MiningRange))
+        if (Player.Instance.InRange(transform.position, MiningRange) && IsMouseOverObject())
         {
-
-            if (IsMouseOverObject())
-            {
-                spriteRenderer.color = Color.gray;
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    Mine();
-                }
-            }
+            spriteRenderer.color = Color.gray;
+            if (Input.GetKeyDown(KeyCode.Mouse0)) Mine();
         }
         else
         {
@@ -74,42 +69,26 @@ public class ResourceNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         return false;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        spriteRenderer.color = Color.gray;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        spriteRenderer.color = Color.white;
-    }
-
     void Mine() 
     {
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ToolData tool = InventoryController.Instance.SelectedItem as ToolData;
-        if (tool != null)
+        if (tool == null)
         {
-            if (tool.ToolLevel >= ToolLevelRequired)
+            tool = ScriptableObject.CreateInstance<ToolData>();
+            tool.ToolLevel = 0;
+            tool.Damage = 1;
+        }
+        if (tool.ToolLevel >= ToolLevelRequired)
+        {
+            ParticleSystem particle = Instantiate(Particles, worldPoint, Particles.transform.rotation);
+            Destroy(particle.gameObject, particle.main.duration);
+            NodeHealth -= tool.Damage;
+            if (NodeHealth <= 0)
             {
-                NodeHealth -= tool.Damage;
-                if (NodeHealth <= 0)
-                {
-                    DropItems();
-                    Destroy(gameObject);
-                }
+                DropItems();
+                Destroy(gameObject);
             }
         }
-        else
-        {
-            if (ToolLevelRequired == 0)
-            {
-                NodeHealth -= 1;
-                if (NodeHealth <= 0)
-                {
-                    DropItems();
-                    Destroy(gameObject);
-                }
-            }
-        } 
     }
 }

@@ -114,11 +114,11 @@ public class InventoryController : MonoBehaviour
                 break;
             }
         }
-        foreach (GameObject slot in inventorySlots)
+        for (int i = inventorySlots.Count - 1; i >= 0; i--)
         {
-            if (slot.transform.childCount != 0)
+            if (inventorySlots[i].transform.childCount != 0)
             {
-                GameObject child = slot.transform.GetChild(0).gameObject;
+                GameObject child = inventorySlots[i].transform.GetChild(0).gameObject;
                 if (child != null && child.GetComponent<InventoryItem>().item.Name == item.Name)
                 {
                     Destroy(child);

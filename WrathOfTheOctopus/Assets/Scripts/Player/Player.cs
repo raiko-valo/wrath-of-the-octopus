@@ -19,9 +19,9 @@ public class Player : MonoBehaviour
         Events.OnDeath -= RespawnPlayer;
     }
 
-    public bool InRange(Vector3 pos, float range)
+    public bool InRange(Vector2 pos, float range)
     {
-        return Vector3.Distance(transform.position, pos) <= range;
+        return Vector2.Distance(transform.position, pos) <= range;
     }
 
     void RespawnPlayer()
