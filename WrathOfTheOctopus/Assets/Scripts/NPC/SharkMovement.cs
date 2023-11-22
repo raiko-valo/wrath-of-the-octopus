@@ -48,12 +48,12 @@ public class SharkMovement : MonoBehaviour
                     if (octopus.transform.position.x > transform.position.x)
                     {
                         // Octopus is to the right of the shark
-                        FlipHorizontally();
+                       ResetScale();
                     }
                     else
                     {
                         // Octopus is to the left of the shark
-                        ResetScale();
+                        FlipHorizontally();
                     }
 
                     lastDirection = direction;
@@ -96,11 +96,11 @@ public class SharkMovement : MonoBehaviour
         float pingPongValue = Mathf.PingPong(Time.time, 5f);
         if (pingPongValue > lastPingPongValue)
         {
-            FlipHorizontally();
+            ResetScale();
         }
         else
         {
-            ResetScale();
+            FlipHorizontally();
         }
         lastPingPongValue = pingPongValue;
         transform.position = new Vector3(pingPongValue + xCoordinate, transform.position.y, 0f);
