@@ -27,11 +27,11 @@ public class SmallFish : MonoBehaviour
             float pingPongValue = Mathf.PingPong(Time.time, 5f);
             if (pingPongValue > lastpingPongValue)
             {
-                transform.eulerAngles = new Vector3(originalRotation.x, 180, originalRotation.z);
+                transform.eulerAngles = originalRotation; // Restore the original rotation
             }
             else
             {
-                transform.eulerAngles = originalRotation; // Restore the original rotation
+                transform.eulerAngles = new Vector3(originalRotation.x, 180, originalRotation.z);
             }
             lastpingPongValue = pingPongValue;
             transform.position = new Vector3(pingPongValue + xCoordinate, transform.position.y, 0f);
