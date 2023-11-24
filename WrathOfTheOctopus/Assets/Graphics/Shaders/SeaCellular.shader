@@ -5,7 +5,10 @@ Shader"SeaCellular"
         _MainTex ("Texture", 2D) = "white" {}
         _Colour1 ("Colour 1", Color) = (1, 2, -2, 1)
         _Colour2 ("Colour 2", Color) = (0.1, 0.5, 1.5, 1)
-        _Transparency ("Transparency", float) = 1.0
+        _Transparency ("Transparency", float) = 0.5
+    	_Scale ("Scale", Float) = 0.04
+        _ScaleX ("Scale X", Float) = 1.0
+        _ScaleY ("Scale Y", Float) = 3.0
     }
     SubShader
     {
@@ -34,6 +37,8 @@ Shader"SeaCellular"
                 float2 uv : TEXCOORD0;
                             UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
+                float4 worldPos : TEXCOORD2;
+
             };
 
             sampler2D _MainTex;
@@ -41,6 +46,9 @@ Shader"SeaCellular"
             float4 _Colour1;
             float4 _Colour2;
             float _Transparency;
+            float _Scale;
+            float _ScaleX;
+            float _ScaleY;
 
 
             v2f vert(appdata v)
@@ -48,7 +56,8 @@ Shader"SeaCellular"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o, o.vertex);
+    o.worldPos = mul(unity_ObjectToWorld, v.vertex);
+    UNITY_TRANSFER_FOG(o, o.vertex);
                 return o;
             }
 
@@ -86,8 +95,11 @@ Shader"SeaCellular"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 color = cellularnoise(i.uv, 16) * _Colour1 + _Colour2;
-                color *= _Transparency;
+    i.worldPos.xy *= _Scale;
+    i.worldPos.x *= _ScaleX;
+    i.worldPos.y *= _ScaleY;
+    fixed4 color = cellularnoise(i.worldPos.xy,16) * _Colour1 + _Colour2;
+    color *= _Transparency;
     return tex2D(_MainTex, i.uv) + color;
 }
             ENDCG
