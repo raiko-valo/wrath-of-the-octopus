@@ -30,6 +30,14 @@ public class Health : MonoBehaviour
         count.text = CurrentHealth.ToString();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            Events.RemoveHealth(1);
+        }
+    }
+
     void OnRemoveHealth(int amount)
     {
         CurrentHealth -= Mathf.Max(0, amount);

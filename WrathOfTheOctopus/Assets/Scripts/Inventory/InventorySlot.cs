@@ -42,14 +42,14 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
     {
         if (selected) image.color = selectedColor;
         else image.color = highlightColor;
-        gameObject.transform.localScale = SelectedScale;
+        //gameObject.transform.localScale = SelectedScale;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (selected) image.color = selectedColor;
         else image.color = defaultColor;
-        gameObject.transform.localScale = DefaultScale;
+        //gameObject.transform.localScale = DefaultScale;
     }
 
     void OnChangeSelected(int index)

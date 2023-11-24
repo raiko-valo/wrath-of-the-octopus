@@ -41,14 +41,6 @@ public class ResourceNode : MonoBehaviour
     {
         for (int item = 0; item < ItemDropAmount; item++)
         {
-            /*
-            float angle = item * (360f / ItemDropAmount); // Calculate the angle for each object.
-
-            // Calculate the position based on the angle and radius.
-            float x = transform.position.x + 0.5f * Mathf.Cos(angle * Mathf.Deg2Rad);
-            float z = transform.position.z + 0.5f * Mathf.Sin(angle * Mathf.Deg2Rad);
-            Vector3 spawnPosition = new Vector3(x, transform.position.y, z);
-            */
             float randomAngle = Random.Range(0f, Mathf.PI * 2f);
 
             // Calculate a random position within the circle using polar coordinates
@@ -83,7 +75,7 @@ public class ResourceNode : MonoBehaviour
     void Mine() 
     {
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        ToolData tool = InventoryController.Instance.SelectedItem as ToolData;
+        ToolData tool = InventoryController.Instance.GetSelected() as ToolData;
         if (tool == null)
         {
             tool = ScriptableObject.CreateInstance<ToolData>();

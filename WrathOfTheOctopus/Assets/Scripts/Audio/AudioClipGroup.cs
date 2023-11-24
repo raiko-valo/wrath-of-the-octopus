@@ -23,19 +23,14 @@ public class AudioClipGroup : ScriptableObject
 
     public void Play(float pitchAdd = 0, Vector3? position = null)
     {
-        Debug.Log("Play 1");
         Play(AudioSourcePool.instance.GetSource(), pitchAdd, position);
     }
 
     public void Play(AudioSource source, float pitchAdd = 0, Vector3? position = null)
     {
-        Debug.Log("Play 2");
-        Debug.Log(Time.time);
-        Debug.Log(nextPlayTime);
         if (Time.time < nextPlayTime) return;
         nextPlayTime = Time.time + Cooldown;
 
-        Debug.Log("Play 3");
         if (position != null)
         {
             source.spatialBlend = 1.0f;
@@ -43,14 +38,11 @@ public class AudioClipGroup : ScriptableObject
         }
         else source.spatialBlend = 0.0f;
 
-        Debug.Log("Play 4");
         source.clip = AudioClips[Random.Range(0, AudioClips.Count)];
         source.volume = Random.Range(VolumeMin,VolumeMax);
         source.pitch = Random.Range(Pitchmin,Pitchmax) + pitchAdd;
         
         source.Play();
-        Debug.Log("Play 5");
-
     }
 
     private void OnDisable()

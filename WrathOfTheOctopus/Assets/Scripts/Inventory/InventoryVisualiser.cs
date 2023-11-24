@@ -13,7 +13,6 @@ public class InventoryVisualiser : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Debug.Log("pressed");
             if (!active) active = true;
             else active = false;
         }

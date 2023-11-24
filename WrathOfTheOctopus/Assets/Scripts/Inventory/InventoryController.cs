@@ -1,21 +1,23 @@
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InventoryController : MonoBehaviour
 {
-    public GameObject InventorySlotPrefab;
+    public InventorySlot InventorySlotPrefab;
     public InventoryItem InventoryItemPrefab;
     public Text text;
     public AudioClipGroup audioClipPickup;
 
-    public List<ItemData> items = new();
+    public List<ItemData> StartingInventory = new();
 
-    [HideInInspector]
-    public ItemData SelectedItem;
-
-    private readonly List<GameObject> inventorySlots = new();
-    private int selectedIndex;
+    //[HideInInspector]
+    public  Dictionary<int, ItemData> inventory = new();
+    public  List<InventorySlot> inventorySlots = new();
+    private int selectedIndex = -1;
 
     public static InventoryController Instance;
 
@@ -24,80 +26,61 @@ public class InventoryController : MonoBehaviour
         Instance = this;
         Events.OnAddHealth += OnAddHealth;
         Events.OnRemoveHealth += OnRemoveHealth;
+        Events.OnChangeSelected += OnChangeSelected;
     }
 
     private void OnDestroy()
     {
         Events.OnAddHealth -= OnAddHealth;
         Events.OnRemoveHealth -= OnRemoveHealth;
+        Events.OnChangeSelected -= OnChangeSelected;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         OnAddHealth(Health.Instance.MaxHealth);
-        Events.ChangeSelected(0);
-        if (items.Count > 0) InitialiseItems();
+        if (StartingInventory.Count > 0) InitialiseStartingItems();
     }
 
-    private void Update()
+    void OnChangeSelected(int index)
     {
-        if (Input.mouseScrollDelta.y != 0.0)
-        {
-            selectedIndex += (int)Input.mouseScrollDelta.y;
-            if (selectedIndex >= inventorySlots.Count)
-            {
-                selectedIndex -= inventorySlots.Count;
-            }
-            else if (selectedIndex < 0)
-            {
-                selectedIndex += inventorySlots.Count;
-            }
-            SelectedItem = inventorySlots[selectedIndex].GetComponentInChildren<InventoryItem>()?.item;
-            Events.ChangeSelected(selectedIndex);
-        }
+        selectedIndex = index;
     }
 
     void OnRemoveHealth(int amount)
     {
-        ItemData[] inventoryItems = new ItemData[amount];
         for (int i = 0; i < amount; i++)
         {
-            GameObject slot = inventorySlots[^1];
-            if (slot.transform.childCount != 0)
+            
+            if (inventory.ContainsKey(inventorySlots.Count - 1))
             {
-                GameObject child = slot.transform.GetChild(0).gameObject;
-                inventoryItems[i] = child.GetComponent<InventoryItem>().item;
-                RemoveItem(inventoryItems[i]);
+                AddItem(inventory[inventorySlots.Count - 1]);
+                inventory.Remove(inventorySlots.Count - 1);
             }
-            Destroy(slot);
+            Destroy(inventorySlots[^1].gameObject);
             inventorySlots.RemoveAt(inventorySlots.Count-1);
-        }
-        for (int i = 0; i < amount; i++)
-        {
-            if (inventoryItems[i] == null) break;
-            AddItem(inventoryItems[i]);
         }
     }
 
     void OnAddHealth(int amount)
     {
-        for (int i = 0; i < amount; i++)
+        int maxIndexBefore = inventorySlots.Count;
+        for (int i = maxIndexBefore; i < maxIndexBefore + amount; i++)
         {
-            GameObject inventorySlot = Instantiate(InventorySlotPrefab, transform);
-            inventorySlot.GetComponent<InventorySlot>().Index = i;
+            InventorySlot inventorySlot = Instantiate(InventorySlotPrefab, transform);
+            inventorySlot.Index = i;
             inventorySlots.Add(inventorySlot);
         }
     }
 
     public void AddItem(ItemData newItem)
     {
-        foreach (GameObject slot in inventorySlots)
+        for (int i = 0; i < inventorySlots.Count; i++)
         {
-            if (slot.transform.childCount == 0)
+            if (inventorySlots[i].transform.childCount == 0)
             {
-                items.Add(newItem);
-                InventoryItem inventoryItem = Instantiate(InventoryItemPrefab, slot.transform);
+                inventory[i] = newItem;
+                InventoryItem inventoryItem = Instantiate(InventoryItemPrefab, inventorySlots[i].transform);
                 inventoryItem.InitialiseItem(newItem);
                 inventoryItem.text = text;
                 audioClipPickup.Play();
@@ -109,39 +92,51 @@ public class InventoryController : MonoBehaviour
 
     public void RemoveItem(ItemData item)
     {
-        foreach (ItemData itemData in items)
+        foreach (int key in inventory.Keys) 
         {
-            if (itemData.Name == item.Name)
+            if (inventory[key].Name == item.Name)
             {
-                items.Remove(itemData);
+                RemoveItemAt(key);
                 break;
-            }
-        }
-        for (int i = inventorySlots.Count - 1; i >= 0; i--)
-        {
-            if (inventorySlots[i].transform.childCount != 0)
-            {
-                GameObject child = inventorySlots[i].transform.GetChild(0).gameObject;
-                if (child != null && child.GetComponent<InventoryItem>().item.Name == item.Name)
-                {
-                    Destroy(child);
-                    break;
-                }
             }
         }
     }
 
-    public void InitialiseItems()
+    public void RemoveItemAt(int index)
     {
-        int index = 0;
-        foreach (GameObject slot in inventorySlots)
+        if (inventory.ContainsKey(index))
         {
-            if (index >= items.Count) break;
-            if (slot.transform.childCount != 0) Destroy(slot.transform.GetChild(0));
-            InventoryItem newItem = Instantiate(InventoryItemPrefab, slot.transform);
-            newItem.InitialiseItem(items[index]);
+            inventory.Remove(index);
+            GameObject child = inventorySlots[index].transform.GetChild(0).gameObject;
+            if (child != null) Destroy(child);
+        }
+    }
+
+    public ItemData GetSelected()
+    {
+        return inventory.ContainsKey(selectedIndex)? inventory[selectedIndex] : null;
+    }
+
+    public void ChangeIndex(int from, int to)
+    {
+        if (from != to)
+        {
+            if (selectedIndex == from) Events.ChangeSelected(to);
+            inventory[to] = inventory[from];
+            inventory.Remove(from);
+        }
+    }
+
+    public void InitialiseStartingItems()
+    {
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            if (i >= StartingInventory.Count || StartingInventory[i] == null) break;
+            if (inventorySlots[i].transform.childCount != 0) Destroy(inventorySlots[i].transform.GetChild(0).gameObject);
+            inventory[i] = StartingInventory[i];
+            InventoryItem newItem = Instantiate(InventoryItemPrefab, inventorySlots[i].transform);
+            newItem.InitialiseItem(inventory[i]);
             newItem.text = text;
-            index++;
         }
     }
 }

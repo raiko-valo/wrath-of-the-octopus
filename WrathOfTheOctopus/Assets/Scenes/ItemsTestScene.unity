@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 868157737}
   - component: {fileID: 868157736}
   m_Layer: 0
-  m_Name: game
+  m_Name: audio test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1164,6 +1164,26 @@ PrefabInstance:
       propertyPath: audioClipPickup
       value: 
       objectReference: {fileID: 11400000, guid: 48d4102a0e8f2ee4f9b0bbcb5004e4df, type: 2}
+    - target: {fileID: 6026934885445080290, guid: 0ce0736645682af469d79cc21a7cf30a, type: 3}
+      propertyPath: InventorySlotPrefab
+      value: 
+      objectReference: {fileID: 2827902585314800060, guid: 361f5c5ebade06b49bc00fbd94f58ffc, type: 3}
+    - target: {fileID: 6026934885445080290, guid: 0ce0736645682af469d79cc21a7cf30a, type: 3}
+      propertyPath: StartingInventory.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026934885445080290, guid: 0ce0736645682af469d79cc21a7cf30a, type: 3}
+      propertyPath: StartingInventory.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 23d0b3cbe31bbd148aba3dbdc9481756, type: 2}
+    - target: {fileID: 6026934885445080290, guid: 0ce0736645682af469d79cc21a7cf30a, type: 3}
+      propertyPath: StartingInventory.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 23d0b3cbe31bbd148aba3dbdc9481756, type: 2}
+    - target: {fileID: 6026934885445080290, guid: 0ce0736645682af469d79cc21a7cf30a, type: 3}
+      propertyPath: StartingInventory.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: a1e81e29c0611384b9396fe023686327, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1263,6 +1283,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5683454761348868331, guid: d6276149171374843bad72abe154c239, type: 3}
       propertyPath: MaxHealth
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683454761348868331, guid: d6276149171374843bad72abe154c239, type: 3}
+      propertyPath: CurrentHealth
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6875961520287047730, guid: d6276149171374843bad72abe154c239, type: 3}

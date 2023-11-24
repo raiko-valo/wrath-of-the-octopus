@@ -76,4 +76,19 @@ public class RadialLayout : LayoutGroup
         }
 
     }
+
+    protected override void Awake()
+    {
+        Events.OnGetInventoryWheelSize += OnGetInventoryWheelSize;
+    }
+
+    protected override void OnDestroy()
+    {
+        Events.OnGetInventoryWheelSize -= OnGetInventoryWheelSize;
+    }
+
+    float OnGetInventoryWheelSize()
+    {
+        return fDistance;
+    }
 }
