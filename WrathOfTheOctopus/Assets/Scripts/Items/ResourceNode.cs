@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using static UnityEngine.ParticleSystem;
 
 public class ResourceNode : MonoBehaviour
 {
@@ -9,12 +12,28 @@ public class ResourceNode : MonoBehaviour
     public int NodeHealth;
     public int ToolLevelRequired;
     public float MiningRange;
+    public ParticleSystem MineParticles;
+    public ParticleSystem DestroyParticles;
+    public AudioClipGroup audioClipMine;
 
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();    
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        if (Player.Instance.InRange(transform.position, MiningRange) && IsMouseOverObject())
+        {
+            spriteRenderer.color = Color.gray;
+            if (Input.GetKeyDown(KeyCode.Mouse0)) Mine();
+        }
+        else
+        {
+            spriteRenderer.color = Color.white;
+        }
     }
 
     [ContextMenu("DropItems")]
@@ -22,39 +41,60 @@ public class ResourceNode : MonoBehaviour
     {
         for (int item = 0; item < ItemDropAmount; item++)
         {
-            float angle = item * (360f / ItemDropAmount); // Calculate the angle for each object.
+            float randomAngle = Random.Range(0f, Mathf.PI * 2f);
 
-            // Calculate the position based on the angle and radius.
-            float x = transform.position.x + 0.5f * Mathf.Cos(angle * Mathf.Deg2Rad);
-            float z = transform.position.z + 0.5f * Mathf.Sin(angle * Mathf.Deg2Rad);
-            Vector3 spawnPosition = new Vector3(x, transform.position.y, z);
+            // Calculate a random position within the circle using polar coordinates
+            float x = transform.position.x + Mathf.Cos(randomAngle) * 0.5f;
+            float y = transform.position.y + Mathf.Sin(randomAngle) * 0.5f;
+
+            Vector3 spawnPosition = new Vector3(x, y, transform.position.z);
 
             Item.Drop(spawnPosition);
         }
     }
 
-   
-    private void OnMouseEnter()
+    bool IsMouseOverObject()
     {
-        if (Player.Instance.InRange(transform.position, MiningRange)) 
-            spriteRenderer.color = Color.gray;
-    }
+        // Cast a ray from the mouse position into the scene
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero, 100.0f,LayerMask.GetMask("ResourceNode"));
 
-    private void OnMouseExit()
-    {
-        spriteRenderer.color = Color.white;
-    }
-
-    private void OnMouseDown()
-    {
-        if (Player.Instance.InRange(transform.position, MiningRange))
+        // Check if the ray hits a collider
+        if (hit.collider != null)
         {
-            NodeHealth -= 1;
+            // Check if the collider belongs to the desired GameObject
+            if (hit.collider.gameObject == gameObject)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    void Mine() 
+    {
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        ToolData tool = InventoryController.Instance.GetSelected() as ToolData;
+        if (tool == null)
+        {
+            tool = ScriptableObject.CreateInstance<ToolData>();
+            tool.ToolLevel = 0;
+            tool.Damage = 1;
+        }
+        if (tool.ToolLevel >= ToolLevelRequired)
+        {
+            ParticleSystem particle = Instantiate(MineParticles, worldPoint, MineParticles.transform.rotation);
+            Destroy(particle.gameObject, particle.main.duration);
+            audioClipMine.Play();
+            NodeHealth -= tool.Damage;
             if (NodeHealth <= 0)
             {
                 DropItems();
+                ParticleSystem destroyParticle = Instantiate(DestroyParticles, transform.position, DestroyParticles.transform.rotation);
+                Destroy(destroyParticle.gameObject, destroyParticle.main.duration);
                 Destroy(gameObject);
             }
-        }       
+        }
     }
 }

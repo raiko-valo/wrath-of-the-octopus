@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7955734863161993740}
   - component: {fileID: 6018926307090903740}
   - component: {fileID: 7450017161521870720}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ResourceNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,3 +148,6 @@ MonoBehaviour:
   NodeHealth: 0
   ToolLevelRequired: 0
   MiningRange: 2
+  MineParticles: {fileID: 5596037813865006890, guid: 5567cb07f3b355a438da71bfa600e1d0, type: 3}
+  DestroyParticles: {fileID: 3695585661188731887, guid: af7e0256ed68e0e4ead95d610ded806b, type: 3}
+  audioClipMine: {fileID: 11400000, guid: 8c3dad974c2409d4a91e475635f12d1e, type: 2}

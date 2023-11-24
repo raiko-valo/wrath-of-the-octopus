@@ -11,14 +11,23 @@ public class CraftingCard : MonoBehaviour
     {
         foreach (ItemPair ingridient in Item.Recipe.Ingredients)
         {
-            int sum = InventoryController.Instance.items.Where(item => item.Name == ingridient.Item.Name).Count();
+            int sum = 0;
+            //int sum = InventoryController.Instance.inventory.Where(item => item.Value.Name == ingridient.Item.Name).Count();
+            foreach (ItemData item in InventoryController.Instance.inventory.Values)
+            {
+                if (item.Name == ingridient.Item.Name)
+                {
+                    sum++;
+                }
+            }
+
             if (sum < ingridient.Ammount) return;
         }
         foreach (ItemPair ingridient in Item.Recipe.Ingredients)
         {
             InventoryController.Instance.RemoveItem(ingridient.Item);
         }
-        Item.Drop(Player.Instance.transform.position);
+        InventoryController.Instance.AddItem(Item);
     }
 
 }
