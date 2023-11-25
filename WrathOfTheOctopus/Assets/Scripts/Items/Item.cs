@@ -32,7 +32,7 @@ public class Item : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, Player.Instance.transform.position) < 0.1)
             {
-                InventoryController.Instance.AddItem(ItemData);
+                Events.AddItem(ItemData);
                 Destroy(gameObject);
             }
             else

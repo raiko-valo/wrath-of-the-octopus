@@ -20,4 +20,11 @@ public static class Events
 
     public static event Func<float> OnGetInventoryWheelSize;
     public static float GetInventoryWheelSize() => OnGetInventoryWheelSize?.Invoke() ?? 0;
+
+
+    public static event Action<ItemData> OnAddItem;
+    public static void AddItem(ItemData value) => OnAddItem?.Invoke(value);
+
+    public static event Action OnInventoryChanged;
+    public static void InventoryChanged() => OnInventoryChanged?.Invoke();
 }

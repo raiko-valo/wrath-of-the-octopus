@@ -53,8 +53,11 @@ public class CraftingStation : MonoBehaviour
     {
         if (craftingMenu.activeSelf) 
             craftingMenu.SetActive(false);
-        else if (Player.Instance.InRange(transform.position, CraftingRange)) 
+        else if (Player.Instance.InRange(transform.position, CraftingRange))
+        {
             craftingMenu.SetActive(true);
+            Events.InventoryChanged();
+        }
     }
 
     private void OnMouseEnter()

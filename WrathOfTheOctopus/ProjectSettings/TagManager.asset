@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - NPC
+  - Obstruction
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - UI
   - ResourceNode
   - Item
-  - 
+  - Obstruction
   - 
   - 
   - 
@@ -44,6 +45,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Objects
+    uniqueID: 2967564929
     locked: 0
   - name: Mobs
     uniqueID: 2167509049

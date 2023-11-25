@@ -2,32 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 
 public class CraftingCard : MonoBehaviour
 {
     public ItemData Item;
 
-    public void Craft()
-    {
-        foreach (ItemPair ingridient in Item.Recipe.Ingredients)
-        {
-            int sum = 0;
-            //int sum = InventoryController.Instance.inventory.Where(item => item.Value.Name == ingridient.Item.Name).Count();
-            foreach (ItemData item in InventoryController.Instance.inventory.Values)
-            {
-                if (item.Name == ingridient.Item.Name)
-                {
-                    sum++;
-                }
-            }
+    private Button button;
+    private Image image;
+    private bool canCraft = false;
 
-            if (sum < ingridient.Ammount) return;
-        }
-        foreach (ItemPair ingridient in Item.Recipe.Ingredients)
-        {
-            InventoryController.Instance.RemoveItem(ingridient.Item);
-        }
-        InventoryController.Instance.AddItem(Item);
+    private void Awake()
+    {
+        button = GetComponent<Button>();
+        image = GetComponent<Image>();
+        Events.OnInventoryChanged += CanCraft;
     }
 
+    private void OnDestroy()
+    {
+        Events.OnInventoryChanged -= CanCraft;
+    }
+
+
+    public void Craft()
+    {
+        if (canCraft)
+        {
+            foreach (ItemPair ingridient in Item.Recipe.Ingredients)
+            {
+                InventoryController.Instance.RemoveItem(ingridient.Item);
+            }
+            Events.AddItem(Item);
+        }
+    }
+
+    void CanCraft()
+    {
+        canCraft = InventoryController.Instance.Inventory.CanCraft(Item);
+        button.enabled = canCraft;
+        if (canCraft)
+        {
+            image.color = new Color(1, 1, 1, 0.7f);
+        }
+        else
+        {
+            image.color = new Color(0.5f, 0.5f, 0.5f, 0.7f);
+        }
+    }
 }
