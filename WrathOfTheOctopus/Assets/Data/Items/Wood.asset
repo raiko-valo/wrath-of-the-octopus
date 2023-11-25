@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05594983e02df9546b425cfa577f7aea, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  Sprite: {fileID: 0}
-  itemPrefab: {fileID: 0}
+  Name: Wood
+  Description: Wood
+  Sprite: {fileID: 21300000, guid: 9bc2180b8e908b64c9a1d3d54c2a3f05, type: 3}
+  itemPrefab: {fileID: 7299299762178244224, guid: 484b754477f62e84aae0d39d641377b3, type: 3}
   Recipe:
     Ingredients: []
     Ammount: 0

@@ -18,9 +18,9 @@ MonoBehaviour:
   itemPrefab: {fileID: 7299299762178244224, guid: 484b754477f62e84aae0d39d641377b3, type: 3}
   Recipe:
     Ingredients:
-    - Item: {fileID: 11400000, guid: 23d0b3cbe31bbd148aba3dbdc9481756, type: 2}
+    - Item: {fileID: 11400000, guid: d8d5d769c415f654f958bf28286a6fe9, type: 2}
       Ammount: 1
-    - Item: {fileID: 11400000, guid: a1e81e29c0611384b9396fe023686327, type: 2}
+    - Item: {fileID: 11400000, guid: a9735493d4b9d2643bc31976e4e7fca6, type: 2}
       Ammount: 1
     Ammount: 1
   Damage: 1
