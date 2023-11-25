@@ -16,14 +16,14 @@ public class ResourceNode : MonoBehaviour
     public ParticleSystem DestroyParticles;
     public AudioClipGroup audioClipMine;
 
-    private SpriteRenderer spriteRenderer;
+    protected private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (Player.Instance.InRange(transform.position, MiningRange) && IsMouseOverObject())
         {
@@ -72,7 +72,7 @@ public class ResourceNode : MonoBehaviour
         return false;
     }
 
-    void Mine() 
+    protected void Mine() 
     {
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ToolData tool = InventoryController.Instance.GetSelected() as ToolData;
