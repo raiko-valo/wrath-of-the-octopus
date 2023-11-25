@@ -18,7 +18,6 @@ public class NpcAttack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Health health = collision.GetComponent<Health>();
-        print("siin");
 
         if (health != null && Time.time >= NextAttack)
         {

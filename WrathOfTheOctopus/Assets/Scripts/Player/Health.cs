@@ -27,7 +27,9 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+        print(CurrentHealth);
         count.text = CurrentHealth.ToString();
+        print(count.text);
     }
 
     private void Update()
