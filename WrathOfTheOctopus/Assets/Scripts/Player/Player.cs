@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player Instance;
-    public Health health;
+    
     private void Awake()
     {
         Instance = this;

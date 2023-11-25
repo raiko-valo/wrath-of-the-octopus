@@ -7,26 +7,40 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KelpParticleMaterial
+  m_Name: CanParticleMaterial
   m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 2100000, guid: b53a01b68a93d7d459b2f7160d50a1ba, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
-  - _ALPHATEST_ON
+  - _ALPHABLEND_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap:
-    RenderType: TransparentCutout
+    RenderType: Transparent
   disabledShaderPasses:
   - GRABPASS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 0.1, y: 0.1}
+        m_Offset: {x: 0.5, y: 0.5}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: a2cf44d537c1c6b4ba44e0a7ad548c7c, type: 3}
+        m_Scale: {x: 0.1, y: 0.1}
+        m_Offset: {x: 0.5, y: 0.5}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _BlendOp: 2
+    - _DstBlend: 1
+    - _EmissionEnabled: 0
+    - _Mode: 5
+    - _SrcBlend: 5
+    - _ZWrite: 0
     m_Colors: []
   m_BuildTextureStacks: []

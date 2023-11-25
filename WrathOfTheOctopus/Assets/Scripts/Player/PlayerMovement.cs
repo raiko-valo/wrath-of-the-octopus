@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float moveSpeed = 5.0f; // Adjust the speed as needed
+    public float collisionOffset = 0.05f;
+    public ContactFilter2D movementFilter;
+
     private bool isMoving = false; // Flag to track movement state
-    private float moveSpeed = 5.0f; // Adjust the speed as needed
     private float angle = 0.0f;
     private Camera cam;
     private Vector3 mousePos;
 
+    private Rigidbody2D rb;
+    private readonly List<RaycastHit2D> castCollisions = new();
+
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
-
     }
 
     // Update is called once per frame
@@ -56,14 +62,39 @@ public class PlayerMovement : MonoBehaviour
         while (transform.position != mousePos)
         {
             // Calculate the direction to move
-            Vector3 direction = (mousePos - transform.position).normalized;
+            Vector2 direction = (mousePos - transform.position).normalized;
+            Vector2 moveLocation;
+            if (!IsCollsion(direction))
+            {
+                moveLocation = mousePos;
+            }
+            else if (!IsCollsion(new Vector2(direction.x,0)))
+            {
+                moveLocation = new Vector2(mousePos.x, transform.position.y);
+            }
+            else if (!IsCollsion(new Vector2(0, direction.y)))
+            {
+                moveLocation = new Vector2(transform.position.x, mousePos.y);
+            }
+            else break;
 
             // Move towards the mousePos
-            transform.position = Vector3.MoveTowards(transform.position, mousePos, moveSpeed * Time.deltaTime);
-
+            transform.position = Vector3.MoveTowards(transform.position, moveLocation, moveSpeed * Time.deltaTime);
             yield return null;
         }
 
         isMoving = false;
+    }
+
+
+    bool IsCollsion(Vector2 direction)
+    {
+        // Check for collisions
+        int collisionCount = rb.Cast(
+            direction,
+            movementFilter,
+            castCollisions,
+            moveSpeed * Time.deltaTime + collisionOffset);
+        return collisionCount != 0;
     }
 }

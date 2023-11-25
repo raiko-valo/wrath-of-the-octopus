@@ -42,7 +42,13 @@ public class CraftingCard : MonoBehaviour
     {
         canCraft = InventoryController.Instance.Inventory.CanCraft(Item);
         button.enabled = canCraft;
-        if (canCraft) image.color = Color.white;
-        else image.color = Color.gray;
+        if (canCraft)
+        {
+            image.color = new Color(1, 1, 1, 0.7f);
+        }
+        else
+        {
+            image.color = new Color(0.5f, 0.5f, 0.5f, 0.7f);
+        }
     }
 }
