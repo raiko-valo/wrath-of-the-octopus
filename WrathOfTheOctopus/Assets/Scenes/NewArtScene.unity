@@ -1232,6 +1232,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3783328993423710910, guid: 6b4d92d76a8bd2a4894a040e4837cdf3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783328993423710910, guid: 6b4d92d76a8bd2a4894a040e4837cdf3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8695745999303167188, guid: 57541ef365e2e774184d7bcabbe1df5f, type: 3}
       propertyPath: m_Name
       value: Octopus
@@ -1240,7 +1248,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 57541ef365e2e774184d7bcabbe1df5f, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 6b4d92d76a8bd2a4894a040e4837cdf3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -143,7 +143,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 6608089061265374264}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -172,6 +172,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52767f15a9baaf42961f08089341616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  collisionOffset: 0.05
+  movementFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!114 &1512076996072848850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,3 +200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691c4fe23c383cb42a33d01fd7773f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 0}
