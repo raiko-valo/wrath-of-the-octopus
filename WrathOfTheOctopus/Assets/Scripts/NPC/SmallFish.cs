@@ -47,4 +47,9 @@ public class SmallFish : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void Attack(Collider2D collision)
+    {
+        print("iins");
+    }
 }
