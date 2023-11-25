@@ -41,7 +41,7 @@ public class ResourceNode : MonoBehaviour
     {
         for (int item = 0; item < ItemDropAmount; item++)
         {
-            float randomAngle = Random.Range(0f, Mathf.PI * 2f);
+            float randomAngle = Random.Range(0f, Mathf.PI);
 
             // Calculate a random position within the circle using polar coordinates
             float x = transform.position.x + Mathf.Cos(randomAngle) * 0.5f;

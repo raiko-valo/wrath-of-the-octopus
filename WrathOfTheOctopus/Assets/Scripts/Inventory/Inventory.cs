@@ -32,6 +32,11 @@ public class Inventory
     {
         return inventory.ContainsKey(selectedIndex) ? inventory[selectedIndex] : null;
     }
+
+    public int GetSelectedItemIndex()
+    {
+        return selectedIndex;
+    }
     #endregion
 
     #region Slots

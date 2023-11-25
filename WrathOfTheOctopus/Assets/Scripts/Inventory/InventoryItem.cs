@@ -17,7 +17,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     private void Awake()
     {
-        parentHeight = transform.parent.GetComponent<RectTransform>().rect.height / 2;
+        parentHeight = transform.parent.GetComponent<RectTransform>().rect.height;
     }
     public void InitialiseItem(ItemData newItem)
     {
@@ -52,10 +52,12 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             new Vector3(Screen.width / 2, Screen.height / 2, 0),
             Input.mousePosition
             );
-        if (distanceFromCenter > Events.GetInventoryWheelSize() + parentHeight)
+        if (distanceFromCenter > Events.GetInventoryWheelSize())
         {
             item.Drop(Player.Instance.transform.position);
             InventoryController.Instance.RemoveItemAt(endParentIndex);
+            if (InventoryController.Instance.GetSelectedIndex() == endParentIndex)
+                Events.ChangeSelected(-1);
         }else if (distanceFromCenter < Events.GetInventoryWheelSize() - parentHeight)
         {
             Events.ChangeSelected(endParentIndex);
