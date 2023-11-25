@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2035045820845013998}
   - component: {fileID: 1512076996072848850}
   m_Layer: 0
-  m_Name: octopus
+  m_Name: octopus_
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
