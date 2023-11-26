@@ -15,6 +15,8 @@ public class ItemData : ScriptableObject
 
     public CraftingRecipe Recipe;
 
+    private bool consumable = false;
+
     public void Drop(Vector3 location)
     {        
         GameObject gm = Instantiate(itemPrefab, location, Quaternion.identity);
@@ -22,6 +24,16 @@ public class ItemData : ScriptableObject
         sr.sprite = Sprite;
         sr.size = new Vector2(0.5f, 0.5f);
         gm.GetComponent<Item>().ItemData = this;
+    }
+
+    public bool GetConsumable()
+    {
+        return consumable;
+    }
+
+    public void Consume()
+    {
+        return;
     }
 }
 

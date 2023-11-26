@@ -33,6 +33,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -110,12 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb93730893a4c7408fa80f6740f55ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventorySlotPrefab: {fileID: 4610198181791790601, guid: 361f5c5ebade06b49bc00fbd94f58ffc, type: 3}
+  InventorySlotPrefab: {fileID: 2827902585314800060, guid: 361f5c5ebade06b49bc00fbd94f58ffc, type: 3}
   InventoryItemPrefab: {fileID: 7235320082100835147, guid: 170943ccbe929384e9e14ddbc98a0311, type: 3}
   text: {fileID: 0}
   audioClipPickup: {fileID: 11400000, guid: 8c3dad974c2409d4a91e475635f12d1e, type: 2}
-  items:
-  - {fileID: 11400000, guid: 23d0b3cbe31bbd148aba3dbdc9481756, type: 2}
-  - {fileID: 11400000, guid: 23d0b3cbe31bbd148aba3dbdc9481756, type: 2}
-  - {fileID: 11400000, guid: a1e81e29c0611384b9396fe023686327, type: 2}
-  SelectedItem: {fileID: 0}
+  StartingInventory: []

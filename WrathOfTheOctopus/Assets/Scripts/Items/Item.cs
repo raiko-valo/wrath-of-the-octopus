@@ -14,9 +14,9 @@ public class Item : MonoBehaviour
     public float BobbingSpeed = 1f;
     public float BobbingHeight = 1f;
     private float originalY;
+    public ItemData ItemData;
 
     [HideInInspector]
-    public ItemData ItemData;
     private SpriteRenderer spriteRenderer;
     private bool pickedUp = false;
 

@@ -58,7 +58,15 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             InventoryController.Instance.RemoveItemAt(endParentIndex);
             if (InventoryController.Instance.GetSelectedIndex() == endParentIndex)
                 Events.ChangeSelected(-1);
-        }else if (distanceFromCenter < Events.GetInventoryWheelSize() - parentHeight)
+        }
+        else if (distanceFromCenter < 300)
+        {
+            if(item.GetConsumable())
+            {
+                item.Consume();
+            }
+        }
+        else if (distanceFromCenter < Events.GetInventoryWheelSize() - parentHeight)
         {
             Events.ChangeSelected(endParentIndex);
         }
