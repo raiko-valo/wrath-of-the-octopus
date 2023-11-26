@@ -43,11 +43,6 @@ public class SmallFish : MonoBehaviour
         startMoving = true;
     }
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
-
     private void Attack(Collider2D collision)
     {
         print("iins");

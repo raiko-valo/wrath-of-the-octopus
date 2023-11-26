@@ -30,12 +30,14 @@ public class NpcAttack : MonoBehaviour
         }
         animator.SetBool("Attack", false);
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         Health health = collision.GetComponent<Health>();
 
         if (health != null && Time.time >= NextAttack)
         {
+
             Events.RemoveHealth(Damage);
             animator.SetBool("Attack", true);
             NextAttack += AttackCooldown;
