@@ -59,16 +59,18 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             if (InventoryController.Instance.GetSelectedIndex() == endParentIndex)
                 Events.ChangeSelected(-1);
         }
-        else if (distanceFromCenter < 300)
-        {
-            if(item.GetConsumable())
-            {
-                item.Consume();
-            }
-        }
         else if (distanceFromCenter < Events.GetInventoryWheelSize() - parentHeight)
         {
-            Events.ChangeSelected(endParentIndex);
+            if (item as HealthBuff != null)
+            {
+                HealthBuff healthBuff = item as HealthBuff;
+                if (healthBuff.GetConsumable())
+                {
+                    healthBuff.Consume();
+                    InventoryController.Instance.RemoveItemAt(startParentIndex);
+                }
+            }
+            else Events.ChangeSelected(endParentIndex);
         }
         else
         {
