@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289b57f3174a1b849b75b8ec8c3b17a1, type: 3}
+  m_Name: Iron
+  m_EditorClassIdentifier: 
+  Name: Iron
+  Description: Iron
+  Sprite: {fileID: -1699007697, guid: a318b06315cca8d46a841760dd829dc6, type: 3}
+  itemPrefab: {fileID: 7299299762178244224, guid: 484b754477f62e84aae0d39d641377b3, type: 3}
+  Recipe:
+    Ingredients: []
+    Ammount: 0

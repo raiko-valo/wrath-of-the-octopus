@@ -25,6 +25,7 @@ public class InventoryController : MonoBehaviour
         Events.OnRemoveHealth += OnRemoveHealth;
         Events.OnChangeSelected += OnChangeSelected;
         Events.OnAddItem += OnAddItem;
+        Events.OnGetInventoryWheelSize += OnGetInventoryWheelSize;
     }
 
     private void OnDestroy()
@@ -33,6 +34,7 @@ public class InventoryController : MonoBehaviour
         Events.OnRemoveHealth -= OnRemoveHealth;
         Events.OnChangeSelected -= OnChangeSelected;
         Events.OnAddItem -= OnAddItem;
+        Events.OnGetInventoryWheelSize += OnGetInventoryWheelSize;
     }
 
     void Start()
@@ -65,6 +67,7 @@ public class InventoryController : MonoBehaviour
         int maxIndexBefore = inventory.SlotCount();
         for (int i = maxIndexBefore; i < maxIndexBefore + amount; i++)
         {
+            if (Health.Instance.MaxHealth == i) break;
             InventorySlot inventorySlot = Instantiate(InventorySlotPrefab, transform);
             inventorySlot.Index = i;
             inventory.AddSlot(inventorySlot);
@@ -103,6 +106,11 @@ public class InventoryController : MonoBehaviour
         return inventory.GetSelectedItem();
     }
 
+    public int GetSelectedIndex()
+    {
+        return inventory.GetSelectedItemIndex();
+    }
+
     public void ChangeIndex(int from, int to)
     {
         inventory.ChangeIndex(from, to);
@@ -120,5 +128,10 @@ public class InventoryController : MonoBehaviour
             newItem.InitialiseItem(inventory.GetAt(i));
             newItem.text = text;
         }
+    }
+
+    public float OnGetInventoryWheelSize()
+    {
+        return transform.GetComponent<RectTransform>().rect.height / 2;
     }
 }

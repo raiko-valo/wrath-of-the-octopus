@@ -5,19 +5,29 @@ using UnityEngine;
 
 public class InventoryVisualiser : MonoBehaviour
 {
-    private bool active = false;
-    public GameObject inventory;
+    public GameObject Inventory;
+    public GameObject GameMenu;
 
-    // Update is called once per frame
+    private bool active = false;
+    private bool menuActive = false;
+
+    private void Awake()
+    {
+        Inventory.SetActive(false);
+        GameMenu.SetActive(false);
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (!active) active = true;
-            else active = false;
+            Inventory.SetActive(!active);
+            active = !active;
         }
 
-        if (active) inventory.SetActive(true);
-        else inventory.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameMenu.SetActive(!menuActive);
+            menuActive = !menuActive;
+        }
     }
 }

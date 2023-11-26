@@ -20,7 +20,7 @@ public class ItemData : ScriptableObject
         GameObject gm = Instantiate(itemPrefab, location, Quaternion.identity);
         SpriteRenderer sr = gm.GetComponent<SpriteRenderer>();
         sr.sprite = Sprite;
-        sr.size = new Vector2(1.0f, 1.0f);
+        sr.size = new Vector2(0.5f, 0.5f);
         gm.GetComponent<Item>().ItemData = this;
     }
 }

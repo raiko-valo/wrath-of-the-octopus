@@ -32,14 +32,6 @@ public class Health : MonoBehaviour
         print(count.text);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            Events.RemoveHealth(1);
-        }
-    }
-
     void OnRemoveHealth(int amount)
     {
         CurrentHealth -= Mathf.Max(0, amount);
@@ -50,7 +42,7 @@ public class Health : MonoBehaviour
 
     void OnAddHealth(int amount)
     {
-        CurrentHealth += amount;
+        CurrentHealth = Mathf.Min(CurrentHealth+amount,MaxHealth);
         count.text = CurrentHealth.ToString();
     }
 
