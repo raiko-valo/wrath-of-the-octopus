@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     public int MaxHealth;
     public int CurrentHealth;
     public Text count;
+    private Animator animator;
 
     private void Awake()
     {
@@ -30,10 +31,12 @@ public class Health : MonoBehaviour
         print(CurrentHealth);
         count.text = CurrentHealth.ToString();
         print(count.text);
+        animator = GetComponent<Animator>();
     }
 
     void OnRemoveHealth(int amount)
     {
+        animator.SetTrigger("Hurt");
         CurrentHealth -= Mathf.Max(0, amount);
         count.text = CurrentHealth.ToString();
 
