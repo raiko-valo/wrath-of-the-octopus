@@ -29,19 +29,4 @@ public class Jellyfish : MonoBehaviour
     {
         startMoving = true;
     }
-
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        /*SpaceShip spaceShip = collision.gameObject.GetComponent<SpaceShip>();
-        if (spaceShip != null)
-        {
-            //collision.gameObject.GetComponent<SpaceShip>().Hit(damage);
-            Destroy(gameObject);
-        }*/
-    }
 }

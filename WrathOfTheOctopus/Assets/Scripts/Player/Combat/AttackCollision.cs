@@ -11,11 +11,6 @@ public class AttackCollision : MonoBehaviour
         Attack(collision);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        Attack(collision);
-    }
-
     private void Attack(Collider2D collision)
     {
         EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();

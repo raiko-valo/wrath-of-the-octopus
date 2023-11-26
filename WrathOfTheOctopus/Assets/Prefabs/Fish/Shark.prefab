@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7450229236282050021}
   - component: {fileID: 1299898850873307145}
   - component: {fileID: 6899915890496880286}
+  - component: {fileID: 6756400119942851788}
   m_Layer: 0
   m_Name: Shark
   m_TagString: Untagged
@@ -122,8 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5c66cdf519d2441a0254feee77c131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationSpeed: 25
-  detectionRange: 6
+  DetectionRange: 6
 --- !u!58 &7450229236282050021
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -199,3 +199,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+--- !u!114 &6756400119942851788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560165302102682548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9280628ee60f19841a633b9b5e0e2a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextAttack: 0
+  AttackCooldown: 2
+  Damage: 1
