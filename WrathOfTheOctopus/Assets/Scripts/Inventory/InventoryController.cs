@@ -67,6 +67,7 @@ public class InventoryController : MonoBehaviour
         int maxIndexBefore = inventory.SlotCount();
         for (int i = maxIndexBefore; i < maxIndexBefore + amount; i++)
         {
+            if (Health.Instance.MaxHealth == i) break;
             InventorySlot inventorySlot = Instantiate(InventorySlotPrefab, transform);
             inventorySlot.Index = i;
             inventory.AddSlot(inventorySlot);

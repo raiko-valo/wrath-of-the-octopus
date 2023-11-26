@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Pickaxe
   Description: Pickaxe
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -1232212179, guid: 59340ce7c93400d49804a76b6f567da1, type: 3}
   itemPrefab: {fileID: 7299299762178244224, guid: 484b754477f62e84aae0d39d641377b3, type: 3}
   Recipe:
     Ingredients:

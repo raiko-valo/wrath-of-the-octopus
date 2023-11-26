@@ -9,7 +9,7 @@ public class BackgroundFollow : MonoBehaviour
         transform.position = new Vector3(
             Player.Instance.transform.position.x,
             transform.position.y,
-            0f
+            3f
         );
     }
 }
