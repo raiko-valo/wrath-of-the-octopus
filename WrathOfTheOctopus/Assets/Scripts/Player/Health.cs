@@ -31,7 +31,7 @@ public class Health : MonoBehaviour
         print(CurrentHealth);
         count.text = CurrentHealth.ToString();
         print(count.text);
-        animator = GetComponent<Animator>();
+        animator = Player.Instance.GetComponent<Animator>();
     }
 
     void OnRemoveHealth(int amount)

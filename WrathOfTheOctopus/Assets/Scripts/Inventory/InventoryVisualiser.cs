@@ -7,9 +7,11 @@ public class InventoryVisualiser : MonoBehaviour
 {
     public GameObject Inventory;
     public GameObject GameMenu;
+    public GameObject BookMenu;
 
     private bool active = false;
     private bool menuActive = false;
+    private bool bookActive = false;
 
     private void Awake()
     {
@@ -28,6 +30,12 @@ public class InventoryVisualiser : MonoBehaviour
         {
             GameMenu.SetActive(!menuActive);
             menuActive = !menuActive;
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            BookMenu.SetActive(!bookActive);
+            bookActive = !bookActive;
         }
     }
 }

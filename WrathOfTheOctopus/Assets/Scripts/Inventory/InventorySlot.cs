@@ -40,6 +40,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        print("Hmm");
         if (selected) image.color = selectedColor;
         else image.color = highlightColor;
         //gameObject.transform.localScale = SelectedScale;
