@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5.0f; // Adjust the speed as needed
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
+    public Tilemap WaterTilemap;
+    public Tilemap GroundTilemap;
 
     private bool isMoving = false; // Flag to track movement state
     private float angle = 0.0f;
     private Camera cam;
     private Vector3 mousePos;
 
+    private CircleCollider2D circleCollider;
     private Rigidbody2D rb;
     private readonly List<RaycastHit2D> castCollisions = new();
 
@@ -21,13 +25,37 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+
+        circleCollider = gameObject.AddComponent<CircleCollider2D>();
+        circleCollider.radius = 0.4f;
+        circleCollider.isTrigger = false;
+        circleCollider.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Move();
+    }
 
+    void Move()
+    {
+
+
+        Vector3Int playerCellPosition = WaterTilemap.WorldToCell(transform.position);
+
+        if (WaterTilemap.GetTile(playerCellPosition) != null)
+        {
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            circleCollider.enabled = false;
+        }
+        else
+        {
+            rb.isKinematic = false;
+            circleCollider.enabled = true;
+
+        }
         if (Input.GetMouseButton(1))
         {
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -55,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    
     IEnumerator MoveOctopus()
     {
         isMoving = true;
@@ -97,5 +126,11 @@ public class PlayerMovement : MonoBehaviour
             castCollisions,
             moveSpeed * Time.deltaTime + collisionOffset);
         return collisionCount != 0;
+    }
+
+    bool IsStandingOnTilemapCollider()
+    {
+        Vector3Int octopusCellPosition = GroundTilemap.WorldToCell(transform.position);
+        return GroundTilemap.GetTile(octopusCellPosition) != null;
     }
 }

@@ -29,8 +29,8 @@ public class Health : MonoBehaviour
     private void Start()
     {
         print(CurrentHealth);
-        count.text = CurrentHealth.ToString();
-        print(count.text);
+        // count.text = CurrentHealth.ToString();
+        // print(count.text);
         animator = Player.Instance.GetComponent<Animator>();
     }
 
@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
     {
         animator.SetTrigger("Hurt");
         CurrentHealth -= Mathf.Max(0, amount);
-        count.text = CurrentHealth.ToString();
+        // count.text = CurrentHealth.ToString();
 
         if (CurrentHealth <= 0) Events.Died();
     }
@@ -46,7 +46,7 @@ public class Health : MonoBehaviour
     void OnAddHealth(int amount)
     {
         CurrentHealth = Mathf.Min(CurrentHealth+amount,MaxHealth);
-        count.text = CurrentHealth.ToString();
+        // count.text = CurrentHealth.ToString();
     }
 
     void OnDeath()
