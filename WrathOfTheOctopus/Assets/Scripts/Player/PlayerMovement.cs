@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private CircleCollider2D circleCollider;
     private Rigidbody2D rb;
     private readonly List<RaycastHit2D> castCollisions = new();
+    
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Move();
+        animator.SetBool("Moving", isMoving);
     }
 
     void Move()
@@ -79,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         // Check if the Octopus is not already moving
         if (!isMoving)
         {
+            animator.SetBool("Moving", true);
             StartCoroutine(MoveOctopus());
         }
     }

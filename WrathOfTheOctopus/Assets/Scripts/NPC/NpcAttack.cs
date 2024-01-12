@@ -7,10 +7,7 @@ public class NpcAttack : MonoBehaviour
     public float NextAttack;
     public float AttackCooldown;
     public int Damage;
-    private Animator animator;
-
-
-    private Health healt;
+    public Animator animator;
 
     private void Start()
     {
@@ -28,7 +25,6 @@ public class NpcAttack : MonoBehaviour
             animator.SetBool("Attack", true);
             NextAttack += AttackCooldown;
         }
-        animator.SetBool("Attack", false);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -42,6 +38,5 @@ public class NpcAttack : MonoBehaviour
             animator.SetBool("Attack", true);
             NextAttack += AttackCooldown;
         }
-        animator.SetBool("Attack", false);
     }
 }
