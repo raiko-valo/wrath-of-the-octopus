@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,19 +29,37 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         print(CurrentHealth);
         // count.text = CurrentHealth.ToString();
         // print(count.text);
         animator = Player.Instance.GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        animator.SetInteger("Health", CurrentHealth);
+    }
+
     void OnRemoveHealth(int amount)
     {
         animator.SetTrigger("Hurt");
+        
         CurrentHealth -= Mathf.Max(0, amount);
         // count.text = CurrentHealth.ToString();
+        if (CurrentHealth <= 0)
+        {
+            
+            animator.SetTrigger("Death");
+            StartCoroutine(DestroyAfterAnimation());
+            Events.Died();           
+        }   
+    }
 
-        if (CurrentHealth <= 0) Events.Died();
+    IEnumerator DestroyAfterAnimation()
+    {
+        // Wait for the end of the "Death" animation
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length * 2f);
     }
 
     void OnAddHealth(int amount)
