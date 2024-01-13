@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private readonly List<RaycastHit2D> castCollisions = new();
     
     public Animator animator;
+    private Vector3Int playerCellPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         circleCollider.radius = 0.4f;
         circleCollider.isTrigger = false;
         circleCollider.enabled = false;
+        mousePos = transform.position;
     }
 
     // Update is called once per frame
@@ -45,25 +47,33 @@ public class PlayerMovement : MonoBehaviour
     {
 
 
-        Vector3Int playerCellPosition = WaterTilemap.WorldToCell(transform.position);
+        playerCellPosition = WaterTilemap.WorldToCell(transform.position);
 
         if (WaterTilemap.GetTile(playerCellPosition) != null)
         {
             rb.isKinematic = true;
             rb.velocity = Vector3.zero;
             circleCollider.enabled = false;
+
+             if (Input.GetMouseButton(1))
+            {
+                mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+                mousePos.z = 0;
+                StartMovingInWater();
+            }
         }
         else
         {
             rb.isKinematic = false;
             circleCollider.enabled = true;
 
-        }
-        if (Input.GetMouseButton(1))
-        {
-            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            mousePos.z = 0;
-            StartMoving();
+            if (Input.GetMouseButton(1))
+            {
+                mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+                mousePos.z = 0;
+            }
+
+            StartMovingOnLand();
         }
 
         if (isMoving && Vector3.Distance(mousePos, transform.position) > 0.05)
@@ -77,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isMoving) transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
-    void StartMoving()
+    void StartMovingInWater()
     {
         // Check if the Octopus is not already moving
         if (!isMoving)
@@ -86,8 +96,20 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(MoveOctopus());
         }
     }
-
     
+    void StartMovingOnLand()
+    {
+        int direction = (mousePos.x - transform.position.x > 0) ? 1 : -1;
+
+        Vector3 movement = new Vector3(direction * moveSpeed, 0f, 0f);
+        rb.velocity = movement;
+
+        if (Mathf.Abs(transform.position.x - mousePos.x) <= 0.1)
+        {
+            rb.velocity = new Vector3(0, 0f, 0f);
+        }
+    }
+
     IEnumerator MoveOctopus()
     {
         isMoving = true;
@@ -132,9 +154,13 @@ public class PlayerMovement : MonoBehaviour
         return collisionCount != 0;
     }
 
-    bool IsStandingOnTilemapCollider()
+    void OnCollisionStay(Collision collision)
     {
-        Vector3Int octopusCellPosition = GroundTilemap.WorldToCell(transform.position);
-        return GroundTilemap.GetTile(octopusCellPosition) != null;
+        // Check if the collision is with a tilemap (you can replace "Tilemap" with your tilemap's tag or layer)
+        if (collision.gameObject.CompareTag("GroundTilemap"))
+        {
+            // Set y-velocity to zero to stop vertical movement when standing on the tilemap
+            rb.velocity = new Vector3(rb.velocity.x, 0f);
+        }
     }
 }

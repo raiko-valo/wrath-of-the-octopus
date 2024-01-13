@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class NPCbullet : MonoBehaviour
 {
@@ -20,6 +21,13 @@ public class NPCbullet : MonoBehaviour
         if (player != null)
         {
             Events.RemoveHealth(Damage);
+            Destroy(gameObject);
+        }
+
+        Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
+
+        if (tilemap != null)
+        {
             Destroy(gameObject);
         }
     }
