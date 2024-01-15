@@ -37,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2467330843293342507
 Animator:
@@ -155,6 +155,7 @@ MonoBehaviour:
   WaterTilemap: {fileID: 0}
   GroundTilemap: {fileID: 0}
   animator: {fileID: 2467330843293342507}
+  audioClipSwirl: {fileID: 11400000, guid: 5cfaab51d26018342984de5ee6be09e3, type: 2}
 --- !u!114 &4666823444215364093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +184,8 @@ MonoBehaviour:
   DurationBulletAttack: 0.1
   BaseRadius: 0
   animator: {fileID: 2467330843293342507}
+  audioClipSword: {fileID: 11400000, guid: 719bff1f9f36f904e93587628b8518b4, type: 2}
+  audioClipShot: {fileID: 11400000, guid: 3d3725f4fb208ca4d89d1ebff33ddaed, type: 2}
 --- !u!50 &5788503438966275003
 Rigidbody2D:
   serializedVersion: 4
@@ -260,3 +263,4 @@ MonoBehaviour:
   MaxHealth: 8
   CurrentHealth: 8
   count: {fileID: 0}
+  audioClipHurt: {fileID: 11400000, guid: 9008e7e51d39ff145a97796a3588ca70, type: 2}

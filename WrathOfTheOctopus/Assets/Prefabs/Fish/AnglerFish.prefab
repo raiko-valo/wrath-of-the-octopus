@@ -202,6 +202,7 @@ MonoBehaviour:
   AttackCooldown: 0
   Damage: 0
   animator: {fileID: 4459504156976142857}
+  audioClipAttack: {fileID: 11400000, guid: 156ce307d70ddb54a8d738944a5cb9b0, type: 2}
 --- !u!114 &8624749634979204816
 MonoBehaviour:
   m_ObjectHideFlags: 0

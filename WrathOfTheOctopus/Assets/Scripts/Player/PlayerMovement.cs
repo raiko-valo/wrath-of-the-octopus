@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private readonly List<RaycastHit2D> castCollisions = new();
     
     public Animator animator;
+    public AudioClipGroup audioClipSwirl;
+
     private Vector3Int playerCellPosition;
 
     // Start is called before the first frame update
@@ -40,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Move();
+        audioClipSwirl.Play();
         animator.SetBool("Moving", isMoving);
     }
 

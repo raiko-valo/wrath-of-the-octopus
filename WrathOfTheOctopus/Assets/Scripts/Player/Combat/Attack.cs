@@ -26,6 +26,8 @@ public class Attack : MonoBehaviour
     public float BaseRadius;
 
     public Animator animator;
+    public AudioClipGroup audioClipSword;
+    public AudioClipGroup audioClipShot;
 
     private AttackType attackType;
     private AttackCollision attackMove;
@@ -50,6 +52,7 @@ public class Attack : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q) && Time.time >= NextCircleAttack)
             {
                 animator.SetTrigger("Attack");
+                audioClipSword.Play();
                 attackType = AttackType.circle;
                 ToggleCircleCollider();
             }
@@ -57,6 +60,7 @@ public class Attack : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.W) && Time.time >= NextSectorAttack)
             {
                 animator.SetTrigger("Attack");
+                audioClipSword.Play();
                 attackType = AttackType.sector;
                 ToggleSectorCollider();
             }
@@ -64,6 +68,7 @@ public class Attack : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && Time.time >= NextBulletAttack)
             {
                 animator.SetTrigger("Attack");
+                audioClipShot.Play();
                 attackType = AttackType.shoot;
                 ToggleBulletCollider();
             }

@@ -11,6 +11,8 @@ public class Health : MonoBehaviour
     public int CurrentHealth;
     public Text count;
     private Animator animator;
+    public AudioClipGroup audioClipHurt;
+    public AudioClipGroup audioClipDeath;
 
     private void Awake()
     {
@@ -44,13 +46,13 @@ public class Health : MonoBehaviour
     void OnRemoveHealth(int amount)
     {
         animator.SetTrigger("Hurt");
-        
+        audioClipHurt.Play();
         CurrentHealth -= Mathf.Max(0, amount);
         // count.text = CurrentHealth.ToString();
         if (CurrentHealth <= 0)
         {
-            
             animator.SetTrigger("Death");
+            audioClipDeath.Play();
             StartCoroutine(DestroyAfterAnimation());
             Events.Died();           
         }   

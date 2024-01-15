@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b068900a5099a041a7835d5889c716a, type: 3}
+  m_Name: Swirl
+  m_EditorClassIdentifier: 
+  VolumeMin: 0.25
+  VolumeMax: 0.5
+  Pitchmin: 0.25
+  Pitchmax: 0.5
+  Cooldown: 1.5
+  AudioClips:
+  - {fileID: 8300000, guid: ca9def6b008c9e04ab402ee7de4dde07, type: 3}
+  - {fileID: 8300000, guid: 944b249408b84964396626ea682bac5f, type: 3}
+  - {fileID: 8300000, guid: 78ec7a2df43cca047bb58807719575cb, type: 3}
