@@ -32,7 +32,6 @@ public class Health : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        print(CurrentHealth);
         // count.text = CurrentHealth.ToString();
         // print(count.text);
         animator = Player.Instance.GetComponent<Animator>();

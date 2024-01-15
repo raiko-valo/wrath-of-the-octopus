@@ -15,7 +15,7 @@ public class Villager : MonoBehaviour
     private Vector3 originalPosition;
     private float targetPosition;
     private bool isPlayerNear;
-    private float detectionRadius = 10f;
+    private float detectionRadius = 6f;
     private bool isIdle = false;
     private NPCbullet attackMove;
     private Tilemap tilemapGameObject;
@@ -28,7 +28,8 @@ public class Villager : MonoBehaviour
 
     private void Start()
     {
-        GameObject tilemapGameObject = GameObject.FindWithTag("GroundTile");
+        GameObject tilemapObject = GameObject.FindWithTag("GroundTile");
+        tilemapGameObject = tilemapObject.GetComponent<Tilemap>();
         originalPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
         float randomOffset = Random.Range(-2, 2);
@@ -59,17 +60,29 @@ public class Villager : MonoBehaviour
             targetPosition = originalPosition.x + Random.Range(-7, 7);
         }
 
-        if (IsDiagonalTileWalkable() || !isIdle)
+
+        if (IsDiagonalTileWalkable() && IsPlayerNearObject())
         {
             move();
-        } else
+        } else if (isIdle) 
+        {
+            targetPosition = transform.position.x;
+        } else if (!IsDiagonalTileWalkable() && !IsPlayerNearObject())
+        {
+            smoothSpeed = 0.7f;
+            targetPosition = originalPosition.x + Random.Range(-7, 7);
+        } else if (IsDiagonalTileWalkable())
+        {
+            move();
+        }
+        else
         {
             rb.velocity = Vector3.zero;
         }
 
 
         // Check if the random number is 1
-        if (Random.Range(1, 201) == 1)
+        if (Random.Range(1, 100) == 1)
         {
             isIdle = !isIdle;
         }
@@ -77,9 +90,10 @@ public class Villager : MonoBehaviour
 
     private bool IsPlayerNearObject()
     {
+        isIdle = false;
         // Calculate the distance between the player and the object
-            float distanceToPlayer = Vector3.Distance(transform.position, Player.Instance.transform.position);
-            return distanceToPlayer <= detectionRadius;
+        float distanceToPlayer = Vector3.Distance(transform.position, Player.Instance.transform.position);
+        return distanceToPlayer <= detectionRadius;
     }
 
     void move()

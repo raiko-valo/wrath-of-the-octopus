@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1299898850873307145}
   - component: {fileID: 6899915890496880286}
   - component: {fileID: 6756400119942851788}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Shark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

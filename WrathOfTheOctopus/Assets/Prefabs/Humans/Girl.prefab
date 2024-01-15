@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9176895004982846076}
   - component: {fileID: -780047443565552074}
   - component: {fileID: 6513497839890942796}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Girl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
