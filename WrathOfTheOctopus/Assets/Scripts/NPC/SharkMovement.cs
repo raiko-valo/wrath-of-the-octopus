@@ -38,7 +38,7 @@ public class SharkMovement : MonoBehaviour
         GameObject tilemapObject = GameObject.FindWithTag("GroundTile");
         tilemapGameObject = tilemapObject.GetComponent<Tilemap>();
 
-        originalPosition = new Vector3(transform.position.x, transform.position.y, 0f); ;
+        originalPosition = new Vector3(transform.position.x, transform.position.y, 0f);
 
         octopus = GameObject.FindWithTag("Player");
 

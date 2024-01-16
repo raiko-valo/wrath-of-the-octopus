@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 3783328993423710910}
   - component: {fileID: 2467330843293342507}
   - component: {fileID: 7299501334007095028}
-  - component: {fileID: 6815308291604795924}
   - component: {fileID: 4651358980216642893}
   - component: {fileID: 4666823444215364093}
   - component: {fileID: 5788503438966275003}
   - component: {fileID: 5546900409945883369}
   - component: {fileID: 5632506031820776417}
+  - component: {fileID: 6693868000875339473}
   m_Layer: 3
   m_Name: Octopus
   m_TagString: Player
@@ -37,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2467330843293342507
 Animator:
@@ -112,19 +112,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6815308291604795924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8695745999303167188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 691c4fe23c383cb42a33d01fd7773f15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 1
 --- !u!114 &4651358980216642893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,3 +253,16 @@ MonoBehaviour:
   count: {fileID: 0}
   audioClipHurt: {fileID: 11400000, guid: 9008e7e51d39ff145a97796a3588ca70, type: 2}
   audioClipDeath: {fileID: 11400000, guid: 1a389a70ac6cf614d95e4a5a287c0724, type: 2}
+--- !u!114 &6693868000875339473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8695745999303167188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691c4fe23c383cb42a33d01fd7773f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1

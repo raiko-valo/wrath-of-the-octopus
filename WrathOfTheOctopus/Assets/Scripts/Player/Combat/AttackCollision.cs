@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AttackCollision : MonoBehaviour
 {
-    public int Damage = Player.Instance.Damage;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,7 +16,7 @@ public class AttackCollision : MonoBehaviour
 
         if (enemyHealth != null)
         {
-            enemyHealth.OnRemoveHealth(Damage);
+            enemyHealth.OnRemoveHealth(Player.Instance.Damage);
         }
     }
 

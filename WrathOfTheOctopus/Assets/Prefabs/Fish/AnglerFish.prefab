@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4459504156976142857
 Animator:
@@ -202,7 +202,6 @@ MonoBehaviour:
   NextAttack: 0
   AttackCooldown: 0
   Damage: 0
-  animator: {fileID: 4459504156976142857}
   audioClipAttack: {fileID: 11400000, guid: 156ce307d70ddb54a8d738944a5cb9b0, type: 2}
 --- !u!114 &8624749634979204816
 MonoBehaviour:
@@ -216,3 +215,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588aace09a1a5bd43a3efb24e4220c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0.5
+  movementFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  collisionOffset: 0.05
