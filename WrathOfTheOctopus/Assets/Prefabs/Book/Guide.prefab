@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2416912361927263559}
   - component: {fileID: 5220827950772616633}
   m_Layer: 5
-  m_Name: Book Image
+  m_Name: Guide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
