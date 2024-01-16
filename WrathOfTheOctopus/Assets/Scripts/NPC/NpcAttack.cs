@@ -7,8 +7,8 @@ public class NpcAttack : MonoBehaviour
     public float NextAttack;
     public float AttackCooldown;
     public int Damage;
-    public Animator animator;
     public AudioClipGroup audioClipAttack;
+    private Animator animator;
 
     private void Start()
     {
