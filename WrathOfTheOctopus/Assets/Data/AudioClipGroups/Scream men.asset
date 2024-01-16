@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b068900a5099a041a7835d5889c716a, type: 3}
-  m_Name: Empty
+  m_Name: Scream men
   m_EditorClassIdentifier: 
   VolumeMin: 1
   VolumeMax: 1
   Pitchmin: 1
   Pitchmax: 1
   Cooldown: 0.1
-  AudioClips: []
+  AudioClips:
+  - {fileID: 8300000, guid: 4a7b3e01f07f5a043bae33d7050a9b7e, type: 3}
+  - {fileID: 8300000, guid: 35fdbc1bbe0143d439eb17a043cc4141, type: 3}

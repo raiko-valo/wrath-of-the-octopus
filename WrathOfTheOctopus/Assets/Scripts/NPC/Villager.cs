@@ -19,6 +19,7 @@ public class Villager : MonoBehaviour
     private bool isIdle = false;
     private NPCbullet attackMove;
     private Tilemap tilemapGameObject;
+    private Animator animator;
 
     public void SetBulletAttackPrefab(NPCbullet bulletPrefab)
     {
@@ -39,11 +40,12 @@ public class Villager : MonoBehaviour
         targetPosition = newTargetX;
 
         NextAttack = Time.time;
-
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        animator.SetBool("Moving", !isIdle);
         if (IsPlayerNearObject())
         {
             targetPosition = Player.Instance.transform.position.x;
@@ -120,7 +122,7 @@ public class Villager : MonoBehaviour
     {
         if (attackPrefab != null)
         {
-
+            animator.SetTrigger("Attack");
             attackMove = Instantiate<NPCbullet>(attackPrefab);
             attackMove.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             Vector3 playerPosition = Player.Instance.transform.position;

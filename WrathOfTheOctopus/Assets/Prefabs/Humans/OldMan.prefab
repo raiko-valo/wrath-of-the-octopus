@@ -209,4 +209,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca7104721b09e74c9baf5b649abeb3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  DroppedResource: {fileID: 0}
+  audioClipHurt: {fileID: 11400000, guid: 9d9e4d91338db1349a8ffbc0169791fd, type: 2}

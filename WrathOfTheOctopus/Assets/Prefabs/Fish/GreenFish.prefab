@@ -197,4 +197,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DroppedResource: {fileID: 11400000, guid: da1d73e53a82ca74c8a1e4e0d63a3c3c, type: 2}
-  health: 1
+  audioClipHurt: {fileID: 11400000, guid: 180641320b1f2a348bfe6d9f21718fbb, type: 2}

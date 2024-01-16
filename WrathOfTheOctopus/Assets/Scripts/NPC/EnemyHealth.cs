@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public ItemData DroppedResource = null;
     [SerializeField]
+    public AudioClipGroup audioClipHurt;
     private int health = 0;
     private Animator animator;
 
@@ -23,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
         
         health -= amount;
         animator.SetTrigger("Hurt");
+        audioClipHurt.Play();
         animator.SetInteger("Health", health);
         if (health <= 0)
         {
