@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3460329909729180281}
   - component: {fileID: 7813881882493237050}
   - component: {fileID: 8823985090184957274}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GreenFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}

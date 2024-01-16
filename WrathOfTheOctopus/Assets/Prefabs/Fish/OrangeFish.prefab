@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1424046224851117415}
   - component: {fileID: 4087903658368192361}
   - component: {fileID: 4100682053519259302}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: OrangeFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}

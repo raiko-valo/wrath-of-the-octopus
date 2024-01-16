@@ -8,9 +8,9 @@ public class Spawner : MonoBehaviour
 {
     public List<GameObject> villagerPrefabs;  // Assign your Villager prefab in the Inspector
     public int maxVillagers = 10;
-    public float spawnInterval = 1000f;  // 1 minute interval
+    public float spawnInterval = 100f;  // 1 minute interval
 
-    private List<Villager> spawnedVillagers = new();
+    private List<GameObject> spawnedVillagers = new();
 
     private bool hasSpawned = false;
     private float nextSpawnTime;
@@ -28,7 +28,6 @@ public class Spawner : MonoBehaviour
     {
         if (Time.time >=  nextSpawnTime)
         {
-            Debug.Log(spawnedVillagers.Count);
             // Check if the number of villagers is below the maximum
             if (spawnedVillagers.Count <= maxVillagers)
             {
@@ -38,7 +37,16 @@ public class Spawner : MonoBehaviour
 
             nextSpawnTime = Time.time + spawnInterval;
         }
-       
+
+        for (int i = 0; i < spawnedVillagers.Count; i++)
+        {
+            GameObject go = spawnedVillagers[i];
+            if (go == null)
+            {
+                spawnedVillagers.Remove(go);
+            }
+        }
+
 
         // Check for victory condition
         if (spawnedVillagers.Count == 0 && hasSpawned)
@@ -55,11 +63,10 @@ public class Spawner : MonoBehaviour
         // Instantiate a new Villager prefab
         int randomIndex = Random.Range(0, villagerPrefabs.Count);
         GameObject newVillagerObject = Instantiate(villagerPrefabs[randomIndex], transform);
-        newVillagerObject.transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
-        Villager newVillager = newVillagerObject.GetComponent<Villager>();
+        newVillagerObject.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
         // Add the new villager to the list
-        spawnedVillagers.Add(newVillager);
+        spawnedVillagers.Add(newVillagerObject);
 
         hasSpawned = true;
     }

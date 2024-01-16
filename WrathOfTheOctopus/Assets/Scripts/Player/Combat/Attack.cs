@@ -124,7 +124,6 @@ public class Attack : MonoBehaviour
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            print(angle - 90f);
             attackMove.transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
 
             NextAttack = Time.time + attackDuration;

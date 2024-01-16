@@ -123,6 +123,10 @@ public class PlayerMovement : MonoBehaviour
             // Calculate the direction to move
             Vector2 direction = (mousePos - transform.position).normalized;
             Vector2 moveLocation;
+            if (WaterTilemap.GetTile(playerCellPosition) == null)
+            {
+                yield return null;
+            }
             if (!IsCollsion(direction))
             {
                 moveLocation = mousePos;
@@ -143,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         isMoving = false;
+        animator.SetBool("Moving", false);
     }
 
 
