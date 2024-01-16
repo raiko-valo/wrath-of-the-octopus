@@ -48,6 +48,18 @@ public class SmallFish : MonoBehaviour
         }
     }
 
+    void FlipHorizontally()
+    {
+        if (transform.position.x - targetPosition.x > 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+    }
+
     private void OnBecameVisible()
     {
         startMoving = true;

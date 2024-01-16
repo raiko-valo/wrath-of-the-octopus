@@ -75,6 +75,8 @@ public class SharkMovement : MonoBehaviour
                     nextMoveTime = Time.time + 100f;
                 }
             }
+            FlipHorizontally();
+
         }
     }
 
