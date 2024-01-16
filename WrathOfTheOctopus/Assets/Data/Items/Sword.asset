@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Sword
   Description: Sword
-  Sprite: {fileID: 1571267242, guid: 59340ce7c93400d49804a76b6f567da1, type: 3}
+  Sprite: {fileID: -390404072, guid: 59340ce7c93400d49804a76b6f567da1, type: 3}
   itemPrefab: {fileID: 7299299762178244224, guid: 484b754477f62e84aae0d39d641377b3, type: 3}
   Recipe:
     Ingredients:
     - Item: {fileID: 11400000, guid: a71ac63a5c990324395d7a028a2f4b4d, type: 2}
       Ammount: 2
     - Item: {fileID: 11400000, guid: a1e81e29c0611384b9396fe023686327, type: 2}
-      Ammount: 1
+      Ammount: 2
     - Item: {fileID: 11400000, guid: d8d5d769c415f654f958bf28286a6fe9, type: 2}
-      Ammount: 1
+      Ammount: 2
     Ammount: 1
-  Damage: 2
+  Damage: 5
   ToolLevel: 0
