@@ -4569,6 +4569,10 @@ PrefabInstance:
       propertyPath: GroundTilemap
       value: 
       objectReference: {fileID: 980257634}
+    - target: {fileID: 5632506031820776417, guid: 6b4d92d76a8bd2a4894a040e4837cdf3, type: 3}
+      propertyPath: audioClipDeath
+      value: 
+      objectReference: {fileID: 11400000, guid: 1a389a70ac6cf614d95e4a5a287c0724, type: 2}
     - target: {fileID: 8695745999303167188, guid: 6b4d92d76a8bd2a4894a040e4837cdf3, type: 3}
       propertyPath: m_Name
       value: Octopus

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public CircleCollider2D circleCollider;
+    public GameObject gameObject;
     public float smoothSpeed = 0.125f;
 
     private void Start()
     {
         transform.position = new Vector3(
-            circleCollider.transform.position.x,
-            circleCollider.transform.position.y,
+            gameObject.transform.position.x,
+            gameObject.transform.position.y,
             -10f
         );
     }
@@ -19,8 +19,8 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         Vector3 desiredPosition = new Vector3(
-            circleCollider.transform.position.x,
-            circleCollider.transform.position.y,
+            gameObject.transform.position.x,
+            gameObject.transform.position.y,
             -10f
         );
 

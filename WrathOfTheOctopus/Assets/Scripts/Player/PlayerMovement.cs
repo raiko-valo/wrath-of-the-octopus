@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public ContactFilter2D movementFilter;
     public Tilemap WaterTilemap;
     public Tilemap GroundTilemap;
+    public bool isTraped = false;
 
     private bool isMoving = false; // Flag to track movement state
     private float angle = 0.0f;
@@ -41,15 +43,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         Move();
         audioClipSwirl.Play();
         animator.SetBool("Moving", isMoving);
+    
     }
 
     void Move()
     {
-
-
         playerCellPosition = WaterTilemap.WorldToCell(transform.position);
 
         if (WaterTilemap.GetTile(playerCellPosition) != null)
@@ -87,12 +89,19 @@ public class PlayerMovement : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
+
         if (!isMoving) transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
     void StartMovingInWater()
     {
         // Check if the Octopus is not already moving
+        if (isTraped)
+        {
+            return;
+        }
+
+
         if (!isMoving)
         {
             animator.SetBool("Moving", true);
@@ -102,6 +111,10 @@ public class PlayerMovement : MonoBehaviour
     
     void StartMovingOnLand()
     {
+        if (isTraped)
+        {
+            return;
+        }
         int direction = (mousePos.x - transform.position.x > 0) ? 1 : -1;
 
         Vector3 movement = new Vector3(direction * moveSpeed, 0f, 0f);
@@ -120,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
         // Continue moving the Octopus until it reaches the mouse position
         while (transform.position != mousePos)
         {
+
             // Calculate the direction to move
             Vector2 direction = (mousePos - transform.position).normalized;
             Vector2 moveLocation;
@@ -140,8 +154,14 @@ public class PlayerMovement : MonoBehaviour
                 moveLocation = new Vector2(transform.position.x, mousePos.y);
             }
             else break;
+            if (isTraped)
+            {
+                break;
+            }
+            
 
             // Move towards the mousePos
+            
             transform.position = Vector3.MoveTowards(transform.position, moveLocation, moveSpeed * Time.deltaTime);
             yield return null;
         }
