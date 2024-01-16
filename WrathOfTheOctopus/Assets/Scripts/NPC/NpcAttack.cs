@@ -7,10 +7,8 @@ public class NpcAttack : MonoBehaviour
     public float NextAttack;
     public float AttackCooldown;
     public int Damage;
-    private Animator animator;
-
-
-    private Health healt;
+    public Animator animator;
+    public AudioClipGroup audioClipAttack;
 
     private void Start()
     {
@@ -26,9 +24,9 @@ public class NpcAttack : MonoBehaviour
         {
             Events.RemoveHealth(Damage);
             animator.SetBool("Attack", true);
+            audioClipAttack.Play();    
             NextAttack += AttackCooldown;
         }
-        animator.SetBool("Attack", false);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -40,8 +38,8 @@ public class NpcAttack : MonoBehaviour
 
             Events.RemoveHealth(Damage);
             animator.SetBool("Attack", true);
+            audioClipAttack.Play();
             NextAttack += AttackCooldown;
         }
-        animator.SetBool("Attack", false);
     }
 }
