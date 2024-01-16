@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: ItemDropAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7450017161521870720, guid: 34f8f36992652114caf8e99327ee037e, type: 3}
+      propertyPath: ToolLevelRequired
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7955734863161993740, guid: 34f8f36992652114caf8e99327ee037e, type: 3}
       propertyPath: m_Size.x
       value: 1.7
