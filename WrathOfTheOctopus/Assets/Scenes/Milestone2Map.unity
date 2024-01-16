@@ -31814,7 +31814,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -31908,19 +31907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26be7e7a0a13b404fa44a64ff9905c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 0.125
---- !u!114 &519420034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26be7e7a0a13b404fa44a64ff9905c01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  circleCollider: {fileID: 1017610751}
   smoothSpeed: 0.125
 --- !u!1001 &530564988
 PrefabInstance:
@@ -32923,6 +32910,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 533145375730061340, guid: 0da283c396135fd468999ddf4876d5b9, type: 3}
   m_PrefabInstance: {fileID: 1496945391}
   m_PrefabAsset: {fileID: 0}
+--- !u!58 &1017610751 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5546900409945883369, guid: 6b4d92d76a8bd2a4894a040e4837cdf3, type: 3}
+  m_PrefabInstance: {fileID: 1223561482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1022135449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33554,6 +33546,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4651358980216642893, guid: 6b4d92d76a8bd2a4894a040e4837cdf3, type: 3}
+      propertyPath: WaterTilemap
+      value: 
+      objectReference: {fileID: 131403536}
+    - target: {fileID: 4651358980216642893, guid: 6b4d92d76a8bd2a4894a040e4837cdf3, type: 3}
+      propertyPath: GroundTilemap
+      value: 
+      objectReference: {fileID: 672047590038999085}
     - target: {fileID: 4651358980216642893, guid: 6b4d92d76a8bd2a4894a040e4837cdf3, type: 3}
       propertyPath: movementFilter.useLayerMask
       value: 1

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10fcae105c17b9f42b8b499e5e16f049, type: 3}
-  m_Name: Wet Burger
+  m_Name: Health Potion
   m_EditorClassIdentifier: 
-  Name: Wet Burger
-  Description: Wet Burger
-  Sprite: {fileID: -2129381855, guid: fd0d32e08db574845b39ff937c9118bb, type: 3}
+  Name: Health Potion
+  Description: Health Potion
+  Sprite: {fileID: 21300000, guid: 923db100b09fd1e4599f415467dc6569, type: 3}
   itemPrefab: {fileID: 7299299762178244224, guid: 484b754477f62e84aae0d39d641377b3, type: 3}
   Recipe:
     Ingredients: []
     Ammount: 0
-  AddedHealth: 1
+  AddedHealth: 3
   AudioClipConsume: {fileID: 11400000, guid: 16dbf1513cf585d41915219bf366ee88, type: 2}

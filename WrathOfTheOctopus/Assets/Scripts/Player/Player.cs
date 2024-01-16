@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player Instance;
+    public int Damage = 1;
     
     private void Awake()
     {
@@ -39,5 +40,10 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(n);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 100);
         yield return new WaitForSeconds(n);
+    }
+
+    public void IncreaseAttack()
+    {
+        Damage += 1;
     }
 }

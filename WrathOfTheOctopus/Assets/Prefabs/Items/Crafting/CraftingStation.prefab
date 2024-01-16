@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2575363656449044653}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7955734863161993740
 SpriteRenderer:
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074f1ce5d226c43459a926fc03366be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CraftableItems: {fileID: 0}
+  CraftableItems: {fileID: 11400000, guid: 11eb7ca941cd69549a8ea3fd5bb43766, type: 2}
   Canva: {fileID: 0}
   CraftingMenu: {fileID: 2825974675171826526, guid: 8a254d53f827967458f5cba938fb9048, type: 3}
   CraftablePrefab: {fileID: 801803706846066877, guid: f64848432ef709d4da9a6021f69d9a7d, type: 3}

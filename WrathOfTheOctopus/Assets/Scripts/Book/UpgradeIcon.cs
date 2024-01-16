@@ -42,4 +42,12 @@ public class UpgradeIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         RequirementsText.text = "";
         image.color = normalColor;
     }
+
+    public void DestroyUpgrade()
+    {
+        gameObject.SetActive(false);
+        NameText.text = "";
+        DescriptionText.text = "";
+        RequirementsText.text = "";
+    }
 }

@@ -166,4 +166,9 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, 0f);
         }
     }
+
+    public void IncreaseSpeed()
+    {
+        moveSpeed += 1;
+    }
 }

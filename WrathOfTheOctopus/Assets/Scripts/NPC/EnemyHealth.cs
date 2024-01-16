@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public ItemData DroppedResource = null;
     [SerializeField]
     private int health = 0;
     private Animator animator;
@@ -26,6 +27,10 @@ public class EnemyHealth : MonoBehaviour
         if (health <= 0)
         {
             StartCoroutine(DestroyAfterAnimation());
+            if (DroppedResource != null)
+            {
+                DroppedResource.Drop(gameObject.transform.position);
+            }
         }
     }
 

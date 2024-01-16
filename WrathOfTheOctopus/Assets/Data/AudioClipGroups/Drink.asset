@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91da2eea5cd87d54299c1e3974cd03e9, type: 3}
-  m_Name: WetBurger
+  m_Script: {fileID: 11500000, guid: 3b068900a5099a041a7835d5889c716a, type: 3}
+  m_Name: Drink
   m_EditorClassIdentifier: 
-  type: 0
-  actionType: 0
-  stackable: 0
-  name: wet burger
-  image: {fileID: -2129381855, guid: fd0d32e08db574845b39ff937c9118bb, type: 3}
+  VolumeMin: 1
+  VolumeMax: 1
+  Pitchmin: 1
+  Pitchmax: 1
+  Cooldown: 0.1
+  AudioClips:
+  - {fileID: 8300000, guid: c277e213dca605446ac58ba0247ba9cc, type: 3}

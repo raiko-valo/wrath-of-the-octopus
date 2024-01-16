@@ -86,4 +86,9 @@ public class Health : MonoBehaviour
     {
         Events.AddHealth(1);
     }
+
+    public void IncreaseHealth()
+    {
+        MaxHealth++;
+    }
 }

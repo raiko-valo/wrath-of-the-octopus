@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10fcae105c17b9f42b8b499e5e16f049, type: 3}
-  m_Name: Wet Burger
+  m_Name: Orange Fish
   m_EditorClassIdentifier: 
-  Name: Wet Burger
-  Description: Wet Burger
-  Sprite: {fileID: -2129381855, guid: fd0d32e08db574845b39ff937c9118bb, type: 3}
+  Name: Orange Fish
+  Description: Orange Fish
+  Sprite: {fileID: 686718475, guid: 0c22cbdcc2443b34baadc2a197adde6a, type: 3}
   itemPrefab: {fileID: 7299299762178244224, guid: 484b754477f62e84aae0d39d641377b3, type: 3}
   Recipe:
     Ingredients: []
