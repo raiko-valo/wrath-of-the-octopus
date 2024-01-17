@@ -13,6 +13,7 @@ public class UpgradeIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public string Name;
     public string Description;
     public string Requirements;
+    public List<ItemData> RequiredItems = null;
     public TextMeshProUGUI NameText;
     public TextMeshProUGUI DescriptionText;
     public TextMeshProUGUI RequirementsText;
