@@ -45,6 +45,8 @@ public class Villager : MonoBehaviour
 
     private void Update()
     {
+        FlipHorizontally();
+
         animator.SetBool("Moving", !isIdle);
         if (IsPlayerNearObject())
         {
@@ -90,6 +92,17 @@ public class Villager : MonoBehaviour
         }
     }
 
+    void FlipHorizontally()
+    {
+        if (rb.velocity.x / Mathf.Abs(rb.velocity.x) < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+    }
     private bool IsPlayerNearObject()
     {
         isIdle = false;
@@ -100,6 +113,7 @@ public class Villager : MonoBehaviour
 
     void move()
     {
+
         float newX = Mathf.Lerp(transform.position.x, targetPosition, smoothSpeed * Time.deltaTime);
 
         Vector3 newPosition = new Vector3(

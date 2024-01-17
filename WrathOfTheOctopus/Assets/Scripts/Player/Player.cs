@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
     void RespawnPlayer()
     {
-        gameObject.transform.position = new Vector3(0, 0, 0);
+        gameObject.transform.position = new Vector3(13, -11, 0);
         for (int i = 0; i < 4; i++)
         {
             StartCoroutine(Flash(3));

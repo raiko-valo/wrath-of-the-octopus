@@ -27,6 +27,7 @@ public class SmallFish : MonoBehaviour
     {
         if (startMoving)
         {
+            FlipHorizontally();
             RandomMovement();
         }
     }

@@ -19,8 +19,6 @@ public class SharkMovement : MonoBehaviour
     private bool isMoving = false; // Flag to track movement state
 
     private Vector3 originalPosition;
-    private Vector3 endPosition;
-    private Vector3 startPosition;
     private readonly List<RaycastHit2D> castCollisions = new();
 
     private bool startMoving = false;
@@ -28,7 +26,6 @@ public class SharkMovement : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject octopus;
     private bool isPlayerInRange = false;
-    private Tilemap tilemapGameObject;
     private Vector3 targetPosition;
 
     void Start()
@@ -36,7 +33,6 @@ public class SharkMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         GameObject tilemapObject = GameObject.FindWithTag("GroundTile");
-        tilemapGameObject = tilemapObject.GetComponent<Tilemap>();
 
         originalPosition = new Vector3(transform.position.x, transform.position.y, 0f);
 
