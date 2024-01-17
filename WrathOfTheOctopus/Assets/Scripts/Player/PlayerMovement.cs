@@ -122,10 +122,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Mathf.Abs(transform.position.x - mousePos.x) <= 0.1)
         {
-            rb.velocity = new Vector3(0, 0f, 0f);
+            rb.velocity = new Vector3(0, -2f, 0f);
         }
     }
 
+    private float onLand;
     IEnumerator MoveOctopus()
     {
         isMoving = true;
@@ -139,7 +140,11 @@ public class PlayerMovement : MonoBehaviour
             Vector2 moveLocation;
             if (WaterTilemap.GetTile(playerCellPosition) == null)
             {
-                yield return null;
+                onLand = Time.time + 1f;
+                if (onLand < Time.time)
+                {
+                    break;
+                }
             }
             if (!IsCollsion(direction))
             {
