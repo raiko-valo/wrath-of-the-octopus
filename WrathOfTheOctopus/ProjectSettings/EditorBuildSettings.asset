@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/DemoMainMenu.unity
     guid: d9294571d2a1a9b4fb3bdf6e32092f67
-  - enabled: 0
-    path: Assets/Scenes/Milestone2Map.unity
-    guid: 30a83a36193b7e74082cf820ca71f962
   - enabled: 1
     path: Assets/Scenes/UpdatedMap.unity
     guid: 2c23a740d36227240a379d69b78dd794
+  - enabled: 0
+    path: Assets/Scenes/Milestone2Map.unity
+    guid: 30a83a36193b7e74082cf820ca71f962
   m_configObjects: {}

@@ -34,7 +34,7 @@ public class MenuManager : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene("Milestone2Map");
+        SceneManager.LoadScene("UpdatedMap");
     }
 
     public void CloseGame()
